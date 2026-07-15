@@ -49,7 +49,7 @@ if (contactForm && formStatus) {
         _subject: 'Portfolio Inquiry'
       };
 
-      const response = await fetch('https://formsubmit.co/ajax/manojsunku2003@gmail.com', {
+      const response = await fetch("https://formsubmit.co/ajax/77cbb6eb8c99d8ff1901ae7cb45d9fed", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
