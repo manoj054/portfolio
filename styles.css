@@ -643,21 +643,13 @@ main,
 }
 
 .contact__form {
-  display: none;
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   margin-top: 0.4rem;
   width: min(720px, 100%);
   margin-inline: auto;
   justify-items: center;
-}
-
-.contact__form--visible {
-  display: grid;
-}
-
-.contact-toggle--hidden {
-  display: none;
 }
 
 .form-group {
