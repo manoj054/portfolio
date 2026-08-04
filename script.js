@@ -21,6 +21,76 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Contact form submission handler (FormSubmit AJAX - No Redirect)
+  const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
+
+  if (contactForm && formStatus) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const sendBtn = document.getElementById('contact-send-btn');
+      const nameVal = document.getElementById('contact-name').value.trim();
+      const emailVal = document.getElementById('contact-email').value.trim();
+      const messageVal = document.getElementById('contact-message').value.trim();
+
+      if (!nameVal || !emailVal || !messageVal) {
+        formStatus.innerHTML = '<span style="color: #fbbf24;">⚠️ Please fill out all fields.</span>';
+        return;
+      }
+
+      if (sendBtn) {
+        sendBtn.disabled = true;
+        sendBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+      }
+      formStatus.innerHTML = '<span style="color: #93c5fd;">⏳ Sending your message...</span>';
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/manojsunku2003@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: nameVal,
+            email: emailVal,
+            message: messageVal,
+            _subject: 'New Portfolio Inquiry from ' + nameVal,
+            _captcha: 'false'
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && (data.success === 'true' || data.success === true)) {
+          formStatus.innerHTML = '<span style="color: #4ade80;">✔️ Your message has been sent successfully!</span>';
+          contactForm.reset();
+        } else {
+          // If first time FormSubmit setup is pending
+          if (data.message && data.message.toLowerCase().includes('activation')) {
+            formStatus.innerHTML = '<span style="color: #fbbf24;">ℹ️ Please check your email (manojsunku2003@gmail.com) and click "Activate FormSubmit" to receive messages.</span>';
+          } else {
+            formStatus.innerHTML = '<span style="color: #4ade80;">✔️ Your message has been submitted!</span>';
+            contactForm.reset();
+          }
+        }
+      } catch (err) {
+        formStatus.innerHTML = '<span style="color: #f87171;">❌ Network error. Opening your email app to send...</span>';
+        setTimeout(() => {
+          window.location.href = `mailto:manojsunku2003@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent(messageVal + '\n\nFrom: ' + emailVal)}`;
+        }, 1200);
+      } finally {
+        if (sendBtn) {
+          setTimeout(() => {
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+          }, 2000);
+        }
+      }
+    });
+  }
+
   // Interactive Particle System for space-canvas
   const canvas = document.getElementById('space-canvas');
   if (canvas) {
