@@ -21,57 +21,56 @@ if (toggleButton && navLinks) {
   });
 }
 
-// Contact form handler - using getElementById for reliability
+// Contact form handler
 document.addEventListener('DOMContentLoaded', function() {
-  const form = document.getElementById('contact-form');
-  const status = document.querySelector('.form-status');
-  
-  if (!form || !status) return;
+  var sendBtn = document.getElementById('contact-send-btn');
+  var statusEl = document.querySelector('.form-status');
 
-  // Handle submit button click directly
-  const sendBtn = form.querySelector('button[type="submit"]');
-  if (sendBtn) {
-    sendBtn.addEventListener('click', async function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+  if (sendBtn && statusEl) {
+    sendBtn.addEventListener('click', async function() {
+      var nameVal = document.getElementById('contact-name').value.trim();
+      var emailVal = document.getElementById('contact-email').value.trim();
+      var messageVal = document.getElementById('contact-message').value.trim();
 
-      // Validate form
-      if (!form.checkValidity()) {
-        form.reportValidity();
+      // Simple validation
+      if (!nameVal || !emailVal || !messageVal) {
+        statusEl.innerHTML = '⚠️ Please fill in all fields.';
+        statusEl.style.color = '#fbbf24';
         return;
       }
 
       sendBtn.disabled = true;
       sendBtn.textContent = 'Sending...';
+      statusEl.innerHTML = '';
 
       try {
-        const payload = {
-          name: form.querySelector('#name').value,
-          email: form.querySelector('#email').value,
-          message: form.querySelector('#message').value,
-          _subject: 'Portfolio Inquiry'
-        };
-
-        const response = await fetch('https://formsubmit.co/ajax/manojsunku2003@gmail.com', {
+        var response = await fetch('https://formsubmit.co/ajax/manojsunku2003@gmail.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({
+            name: nameVal,
+            email: emailVal,
+            message: messageVal,
+            _subject: 'Portfolio Inquiry'
+          })
         });
 
         if (response.ok) {
-          status.innerHTML = '✔️ The form was submitted successfully!';
-          status.style.color = '#9df7c5';
-          form.reset();
+          statusEl.innerHTML = '✔️ The form was submitted successfully!';
+          statusEl.style.color = '#9df7c5';
+          document.getElementById('contact-name').value = '';
+          document.getElementById('contact-email').value = '';
+          document.getElementById('contact-message').value = '';
         } else {
-          status.innerHTML = '❌ Something went wrong. Please try again.';
-          status.style.color = '#ff7a6b';
+          statusEl.innerHTML = '❌ Something went wrong. Please try again.';
+          statusEl.style.color = '#ff7a6b';
         }
       } catch (err) {
-        status.innerHTML = '❌ Unable to send right now. Please try again.';
-        status.style.color = '#ff7a6b';
+        statusEl.innerHTML = '❌ Unable to send right now. Please try again.';
+        statusEl.style.color = '#ff7a6b';
       } finally {
         setTimeout(function() {
           sendBtn.disabled = false;

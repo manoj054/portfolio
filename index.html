@@ -278,25 +278,22 @@
           <p class="contact-subtitle">Have an opportunity, a project proposal, or just want to say hi? Drop a message!</p>
         </div>
         <div class="contact__card">
-          <form id="contact-form" class="contact__form" onsubmit="return false;">
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_subject" value="Portfolio Inquiry" />
-
+          <div id="contact-form" class="contact__form">
             <div class="form-group form-group--full">
-              <input id="name" type="text" name="name" placeholder="Your Name" required />
+              <input id="contact-name" type="text" placeholder="Your Name" />
             </div>
 
             <div class="form-group form-group--full">
-              <input id="email" type="email" name="email" placeholder="Your Email" required />
+              <input id="contact-email" type="email" placeholder="Your Email" />
             </div>
 
             <div class="form-group form-group--full">
-              <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+              <textarea id="contact-message" rows="5" placeholder="Your Message"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary contact-btn-full">Send Message <i class="fa-solid fa-paper-plane"></i></button>
-            <p class="form-status text-center mt-3" aria-live="polite"></p>
-          </form>
+            <button type="button" id="contact-send-btn" class="btn btn-primary contact-btn-full">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            <p class="form-status" aria-live="polite"></p>
+          </div>
         </div>
       </section>
     </main>
