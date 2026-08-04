@@ -22,27 +22,52 @@ if (toggleButton && navLinks) {
 }
 
 if (contactForm && formStatus) {
-  contactForm.addEventListener('submit', (event) => {
-    // We allow the native submission to proceed to the new tab (target="_blank")
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Stop native submission and redirect
+
     const submitButton = contactForm.querySelector('button[type="submit"]');
-    
     if (submitButton) {
       submitButton.disabled = true;
       submitButton.textContent = 'Sending...';
     }
 
-    // Display the success message on the current page with a tick mark
-    formStatus.innerHTML = '✔️ The form was submitted successfully!';
-    formStatus.style.color = '#9df7c5';
-    
-    // Reset the form and button after a short delay
-    setTimeout(() => {
-      contactForm.reset();
-      if (submitButton) {
-        submitButton.disabled = false;
-        submitButton.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+    try {
+      const formData = new FormData(contactForm);
+      const payload = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        message: formData.get('message'),
+        _subject: 'Portfolio Inquiry'
+      };
+
+      const response = await fetch("https://formsubmit.co/ajax/manojsunku2003@gmail.com", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        formStatus.innerHTML = '✔️ The form was submitted successfully!';
+        formStatus.style.color = '#9df7c5';
+        contactForm.reset();
+      } else {
+        formStatus.innerHTML = 'Something went wrong. Please try again later.';
+        formStatus.style.color = '#ff7a6b';
       }
-    }, 2000);
+    } catch (error) {
+      formStatus.innerHTML = 'Unable to send your message right now. Please try again.';
+      formStatus.style.color = '#ff7a6b';
+    } finally {
+      setTimeout(() => {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+        }
+      }, 3000);
+    }
   });
 }
 
