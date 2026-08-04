@@ -21,55 +21,66 @@ if (toggleButton && navLinks) {
   });
 }
 
-if (contactForm && formStatus) {
-  contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault(); // Stop native submission and redirect
+// Contact form handler - using getElementById for reliability
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('contact-form');
+  const status = document.querySelector('.form-status');
+  
+  if (!form || !status) return;
 
-    const submitButton = contactForm.querySelector('button[type="submit"]');
-    if (submitButton) {
-      submitButton.disabled = true;
-      submitButton.textContent = 'Sending...';
-    }
+  // Handle submit button click directly
+  const sendBtn = form.querySelector('button[type="submit"]');
+  if (sendBtn) {
+    sendBtn.addEventListener('click', async function(e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-    try {
-      const formData = new FormData(contactForm);
-      const payload = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        message: formData.get('message'),
-        _subject: 'Portfolio Inquiry'
-      };
-
-      const response = await fetch("https://formsubmit.co/ajax/manojsunku2003@gmail.com", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      if (response.ok) {
-        formStatus.innerHTML = '✔️ The form was submitted successfully!';
-        formStatus.style.color = '#9df7c5';
-        contactForm.reset();
-      } else {
-        formStatus.innerHTML = 'Something went wrong. Please try again later.';
-        formStatus.style.color = '#ff7a6b';
+      // Validate form
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
       }
-    } catch (error) {
-      formStatus.innerHTML = 'Unable to send your message right now. Please try again.';
-      formStatus.style.color = '#ff7a6b';
-    } finally {
-      setTimeout(() => {
-        if (submitButton) {
-          submitButton.disabled = false;
-          submitButton.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+
+      sendBtn.disabled = true;
+      sendBtn.textContent = 'Sending...';
+
+      try {
+        const payload = {
+          name: form.querySelector('#name').value,
+          email: form.querySelector('#email').value,
+          message: form.querySelector('#message').value,
+          _subject: 'Portfolio Inquiry'
+        };
+
+        const response = await fetch('https://formsubmit.co/ajax/manojsunku2003@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          status.innerHTML = '✔️ The form was submitted successfully!';
+          status.style.color = '#9df7c5';
+          form.reset();
+        } else {
+          status.innerHTML = '❌ Something went wrong. Please try again.';
+          status.style.color = '#ff7a6b';
         }
-      }, 3000);
-    }
-  });
-}
+      } catch (err) {
+        status.innerHTML = '❌ Unable to send right now. Please try again.';
+        status.style.color = '#ff7a6b';
+      } finally {
+        setTimeout(function() {
+          sendBtn.disabled = false;
+          sendBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+        }, 3000);
+      }
+    });
+  }
+});
 
 // Interactive Particle System Logic for space-canvas
 const canvas = document.getElementById('space-canvas');
