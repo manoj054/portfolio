@@ -21,32 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Contact Form Submission (Hidden Iframe approach - 100% reliable, zero redirects)
-  window.submitted = false;
-
+  // Contact form submission handler
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
   const sendBtn = document.getElementById('contact-send-btn');
 
-  window.showFormSuccess = function() {
-    if (window.submitted) {
-      if (formStatus) {
-        formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Your message has been sent successfully!</span>';
-      }
-      if (contactForm) {
-        contactForm.reset();
-      }
-      if (sendBtn) {
-        sendBtn.disabled = false;
-        sendBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
-      }
-      window.submitted = false;
-    }
-  };
-
   if (contactForm) {
-    contactForm.addEventListener('submit', () => {
-      window.submitted = true;
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nameVal = document.getElementById('contact-name').value.trim();
+      const emailVal = document.getElementById('contact-email').value.trim();
+      const messageVal = document.getElementById('contact-message').value.trim();
+
+      if (!nameVal || !emailVal || !messageVal) {
+        if (formStatus) {
+          formStatus.innerHTML = '<span style="color: #fbbf24; font-weight: 600;">⚠️ Please fill in all fields.</span>';
+        }
+        return;
+      }
+
       if (sendBtn) {
         sendBtn.disabled = true;
         sendBtn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
@@ -55,12 +49,74 @@ document.addEventListener('DOMContentLoaded', () => {
         formStatus.innerHTML = '<span style="color: #93c5fd; font-weight: 600;">⏳ Sending your message...</span>';
       }
 
-      // Safety fallback in case iframe load event is delayed
-      setTimeout(() => {
-        if (window.submitted) {
-          window.showFormSuccess();
+      const isLocalFile = window.location.protocol === 'file:';
+
+      if (isLocalFile) {
+        // When running locally from local HTML file (file://), open Gmail composer directly to deliver message to email
+        setTimeout(() => {
+          const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2003@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
+          window.open(mailtoUrl, '_blank');
+
+          if (formStatus) {
+            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send message directly to manojsunku2003@gmail.com!</span>';
+          }
+          contactForm.reset();
+          if (sendBtn) {
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+          }
+        }, 600);
+        return;
+      }
+
+      // On live web server / GitHub Pages: submit asynchronously via FormSubmit API
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/manojsunku2003@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: nameVal,
+            email: emailVal,
+            message: messageVal,
+            _subject: 'Portfolio Inquiry from ' + nameVal,
+            _captcha: 'false'
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && (data.success === 'true' || data.success === true)) {
+          if (formStatus) {
+            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Your message has been sent successfully!</span>';
+          }
+          contactForm.reset();
+        } else {
+          // Fallback to Gmail compose if FormSubmit requires activation or returns error
+          const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2003@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
+          window.open(mailtoUrl, '_blank');
+          if (formStatus) {
+            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send your message to manojsunku2003@gmail.com!</span>';
+          }
+          contactForm.reset();
         }
-      }, 3000);
+      } catch (err) {
+        const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2003@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
+        window.open(mailtoUrl, '_blank');
+        if (formStatus) {
+          formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send your message to manojsunku2003@gmail.com!</span>';
+        }
+        contactForm.reset();
+      } finally {
+        if (sendBtn) {
+          setTimeout(() => {
+            sendBtn.disabled = false;
+            sendBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
+          }, 1200);
+        }
+      }
     });
   }
 
