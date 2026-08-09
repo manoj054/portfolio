@@ -238,10 +238,11 @@ main,
 
 .hero__quick-links a svg,
 .hero__quick-links a i {
-  width: 22px;
-  height: 22px;
-  display: block;
+  font-size: 1.25rem;
   color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: color 0.2s ease, transform 0.2s ease;
 }
 
