@@ -54,11 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (isLocalFile) {
         // When running locally from local HTML file (file://), open Gmail composer directly to deliver message to email
         setTimeout(() => {
-          const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2003@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
+          const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2026@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
           window.open(mailtoUrl, '_blank');
 
           if (formStatus) {
-            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send message directly to manojsunku2003@gmail.com!</span>';
+            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send message directly to manojsunku2026@gmail.com!</span>';
           }
           contactForm.reset();
           if (sendBtn) {
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // On live web server / GitHub Pages: submit asynchronously via FormSubmit API
       try {
-        const response = await fetch('https://formsubmit.co/ajax/manojsunku2003@gmail.com', {
+        const response = await fetch('https://formsubmit.co/ajax/manojsunku2026@gmail.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -95,18 +95,18 @@ document.addEventListener('DOMContentLoaded', () => {
           contactForm.reset();
         } else {
           // Fallback to Gmail compose if FormSubmit requires activation or returns error
-          const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2003@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
+          const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2026@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
           window.open(mailtoUrl, '_blank');
           if (formStatus) {
-            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send your message to manojsunku2003@gmail.com!</span>';
+            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send your message to manojsunku2026@gmail.com!</span>';
           }
           contactForm.reset();
         }
       } catch (err) {
-        const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2003@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
+        const mailtoUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=manojsunku2026@gmail.com&su=Portfolio Inquiry from ${encodeURIComponent(nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
         window.open(mailtoUrl, '_blank');
         if (formStatus) {
-          formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send your message to manojsunku2003@gmail.com!</span>';
+          formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening Gmail to send your message to manojsunku2026@gmail.com!</span>';
         }
         contactForm.reset();
       } finally {
