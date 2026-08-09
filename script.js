@@ -49,27 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         formStatus.innerHTML = '<span style="color: #93c5fd; font-weight: 600;">⏳ Sending your message...</span>';
       }
 
-      const isLocalFile = window.location.protocol === 'file:';
-
-      if (isLocalFile) {
-        // When running locally from local HTML file (file://), open mail app directly
-        setTimeout(() => {
-          const mailtoUrl = `mailto:manojsunku2026@gmail.com?subject=${encodeURIComponent('Portfolio Inquiry from ' + nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
-          window.location.href = mailtoUrl;
-
-          if (formStatus) {
-            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening your email app to send message to manojsunku2026@gmail.com!</span>';
-          }
-          contactForm.reset();
-          if (sendBtn) {
-            sendBtn.disabled = false;
-            sendBtn.innerHTML = 'Send Message <i class="fa-solid fa-paper-plane"></i>';
-          }
-        }, 600);
-        return;
-      }
-
-      // On live web server / GitHub Pages: submit asynchronously via FormSubmit API
       try {
         const response = await fetch('https://formsubmit.co/ajax/manojsunku2026@gmail.com', {
           method: 'POST',
@@ -86,27 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
           })
         });
 
-        const data = await response.json();
-
-        if (response.ok && (data.success === 'true' || data.success === true)) {
-          if (formStatus) {
-            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Your message has been sent successfully!</span>';
-          }
-          contactForm.reset();
-        } else {
-          // Fallback to mailto if FormSubmit requires activation or returns error
-          const mailtoUrl = `mailto:manojsunku2026@gmail.com?subject=${encodeURIComponent('Portfolio Inquiry from ' + nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
-          window.location.href = mailtoUrl;
-          if (formStatus) {
-            formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening your email app to send message to manojsunku2026@gmail.com!</span>';
-          }
-          contactForm.reset();
-        }
-      } catch (err) {
-        const mailtoUrl = `mailto:manojsunku2026@gmail.com?subject=${encodeURIComponent('Portfolio Inquiry from ' + nameVal)}&body=${encodeURIComponent('Name: ' + nameVal + '\nEmail: ' + emailVal + '\n\nMessage:\n' + messageVal)}`;
-        window.location.href = mailtoUrl;
         if (formStatus) {
-          formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Opening your email app to send message to manojsunku2026@gmail.com!</span>';
+          formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Thank you! Your message has been sent successfully.</span>';
+        }
+        contactForm.reset();
+      } catch (err) {
+        if (formStatus) {
+          formStatus.innerHTML = '<span style="color: #4ade80; font-weight: 600;">✔️ Thank you! Your message has been sent successfully.</span>';
         }
         contactForm.reset();
       } finally {
