@@ -219,25 +219,43 @@ main,
 .hero__quick-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.9rem;
-  margin-top: 1rem;
+  gap: 1rem;
+  margin-top: 1.2rem;
 }
 
 .hero__quick-links a {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f8fbff;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero__quick-links a svg,
+.hero__quick-links a i {
+  width: 22px;
+  height: 22px;
+  display: block;
+  color: #38bdf8;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .hero__quick-links a:hover {
-  transform: translateY(-2px);
-  border-color: rgba(6, 182, 212, 0.9);
-  background: rgba(6, 182, 212, 0.12);
+  transform: translateY(-3px);
+  border-color: rgba(56, 189, 248, 0.9);
+  background: rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+}
+
+.hero__quick-links a:hover svg,
+.hero__quick-links a:hover i {
+  color: #ffffff;
+  transform: scale(1.1);
 }
 
 .hero__image {
@@ -630,23 +648,46 @@ main,
 }
 
 .text-center {
-  text-center: center;
-}
-.contact-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 0.5rem;
   text-align: center;
-  background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+}
+
+.section.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.section-heading.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto 1.5rem auto;
+}
+
+.contact-title {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 800;
+  margin: 0 0 0.75rem 0;
+  text-align: center;
+  background: linear-gradient(135deg, #a78bfa, #c4b5fd, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  width: 100%;
+  display: block;
 }
+
 .contact-subtitle {
   text-align: center;
   color: var(--muted);
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  font-size: 1.1rem;
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 1.08rem;
+  line-height: 1.6;
 }
 
 .contact__card {
