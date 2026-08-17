@@ -206,8 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animate() {
       requestAnimationFrame(animate);
-      ctx.fillStyle = 'rgba(6, 8, 22, 0.3)';
-      ctx.fillRect(0, 0, width, height);
+      ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < particles.length; i++) {
         particles[i].update();

@@ -43,6 +43,7 @@ body {
   height: 100vh;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.55;
 }
 
 a {
@@ -298,6 +299,7 @@ main,
   width: min(360px, 78vw);
   aspect-ratio: 1;
   object-fit: cover;
+  object-position: top center;
   border-radius: 50%;
   filter: drop-shadow(0 26px 45px rgba(0, 0, 0, 0.5));
   border: 6px solid rgba(255, 255, 255, 0.08);
@@ -400,6 +402,10 @@ main,
   padding: 5rem 5vw;
 }
 
+.section-heading {
+  text-align: center;
+}
+
 .section-heading h2 {
   max-width: 760px;
   margin: 0.35rem auto 0;
@@ -454,6 +460,11 @@ main,
 
 .about__image-card img {
   border-radius: 18px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
   transition: transform 0.5s ease;
 }
 
