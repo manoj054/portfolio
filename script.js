@@ -30,6 +30,121 @@ document.querySelectorAll('section.section').forEach(sec => {
 });
 
 /* ============================================================
+   0d. CLICK BURST EXPLOSION CANVAS
+============================================================ */
+const burstCanvas = document.getElementById('burst-canvas');
+if (burstCanvas) {
+  const bCtx = burstCanvas.getContext('2d');
+  burstCanvas.width  = window.innerWidth;
+  burstCanvas.height = window.innerHeight;
+  window.addEventListener('resize', () => {
+    burstCanvas.width  = window.innerWidth;
+    burstCanvas.height = window.innerHeight;
+  }, { passive: true });
+
+  const BURST_COLORS = [
+    '#7c3aed','#06b6d4','#ff7a6b','#a78bfa',
+    '#38bdf8','#fbbf24','#4ade80','#f472b6'
+  ];
+  let burstParticles = [];
+
+  class BurstParticle {
+    constructor(x, y) {
+      this.x = x; this.y = y;
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 9 + 3;
+      this.vx = Math.cos(angle) * speed;
+      this.vy = Math.sin(angle) * speed - Math.random() * 3;
+      this.gravity = 0.18;
+      this.alpha = 1;
+      this.decay = Math.random() * 0.018 + 0.012;
+      this.size  = Math.random() * 5 + 2;
+      this.color = BURST_COLORS[Math.floor(Math.random() * BURST_COLORS.length)];
+      this.shape = Math.random() > 0.5 ? 'circle' : 'star';
+    }
+    update() {
+      this.vy += this.gravity;
+      this.x += this.vx; this.y += this.vy;
+      this.alpha -= this.decay;
+      this.size  *= 0.97;
+    }
+    draw() {
+      bCtx.save();
+      bCtx.globalAlpha = Math.max(0, this.alpha);
+      bCtx.shadowBlur = 12; bCtx.shadowColor = this.color;
+      bCtx.fillStyle  = this.color;
+      bCtx.beginPath();
+      if (this.shape === 'circle') {
+        bCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      } else {
+        // diamond
+        bCtx.moveTo(this.x, this.y - this.size);
+        bCtx.lineTo(this.x + this.size * 0.6, this.y);
+        bCtx.lineTo(this.x, this.y + this.size);
+        bCtx.lineTo(this.x - this.size * 0.6, this.y);
+      }
+      bCtx.fill();
+      bCtx.restore();
+    }
+  }
+
+  function spawnBurst(x, y) {
+    const count = 55;
+    for (let i = 0; i < count; i++) burstParticles.push(new BurstParticle(x, y));
+    // CSS ring
+    const ring = document.createElement('div');
+    ring.className = 'click-ring';
+    ring.style.cssText = `left:${x}px;top:${y}px;border-color:${BURST_COLORS[Math.floor(Math.random()*BURST_COLORS.length)]};`;
+    document.body.appendChild(ring);
+    setTimeout(() => ring.remove(), 700);
+  }
+
+  document.addEventListener('click', e => spawnBurst(e.clientX, e.clientY));
+
+  function burstLoop() {
+    requestAnimationFrame(burstLoop);
+    bCtx.clearRect(0, 0, burstCanvas.width, burstCanvas.height);
+    burstParticles = burstParticles.filter(p => p.alpha > 0);
+    burstParticles.forEach(p => { p.update(); p.draw(); });
+  }
+  burstLoop();
+}
+
+/* ============================================================
+   0e. HERO SECTION — FULL 3D PERSPECTIVE TILT on mouse
+============================================================ */
+const heroSec = document.getElementById('home');
+if (heroSec) {
+  heroSec.addEventListener('mousemove', e => {
+    const rect = heroSec.getBoundingClientRect();
+    const cx = rect.width  / 2;
+    const cy = rect.height / 2;
+    const rx = ((e.clientY - rect.top  - cy) / cy) * -3;
+    const ry = ((e.clientX - rect.left - cx) / cx) *  4;
+    heroSec.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    heroSec.style.transition = 'transform .05s linear';
+  });
+  heroSec.addEventListener('mouseleave', () => {
+    heroSec.style.transition = 'transform .8s cubic-bezier(.23,1,.32,1)';
+    heroSec.style.transform  = '';
+  });
+}
+
+/* ============================================================
+   0f. HOLOGRAPHIC FOIL on service cards
+============================================================ */
+document.querySelectorAll('.service-card').forEach(card => {
+  card.classList.add('holo-foil');
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width  * 100;
+    const y = (e.clientY - rect.top)  / rect.height * 100;
+    card.style.setProperty('--foil-x', x + '%');
+    card.style.setProperty('--foil-y', y + '%');
+  });
+});
+
+/* ============================================================
    1. LOADER — progress bar animation + glitch hide
 ============================================================ */
 const loader  = document.getElementById('loader');
