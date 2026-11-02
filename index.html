@@ -1,498 +1,1159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Sunku Manoj Kumar | Full-Stack Developer and AI Enthusiast. Building modern web applications with React.js and Python." />
-    <title>Sunku Manoj Kumar | Portfolio</title>
+    <title>Sunku Manoj Kumar | Full-Stack Developer &amp; AI Enthusiast</title>
+    <meta name="description" content="Portfolio of Sunku Manoj Kumar - Full-Stack Developer, Python Backend Engineer, and AI Enthusiast specializing in React.js, FastAPI, Django, and OpenCV." />
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <!-- Devicon Icons for programming badges -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
 
-    <!-- Multi-layer canvas for particles + shooting stars -->
-    <canvas id="space-canvas"></canvas>
+    <!-- Subtle Ambient Particle Background Canvas -->
+    <canvas id="ambient-canvas"></canvas>
 
-    <!-- Click burst explosion canvas -->
-    <canvas id="burst-canvas"></canvas>
+    <!-- ================= FLOATING SOCIAL DOCK (Sticky Left) ================= -->
+    <aside class="floating-social-dock" aria-label="Social connections">
+      <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="GitHub (@manoj054)" aria-label="GitHub Profile">
+        <i class="fa-brands fa-github"></i>
+      </a>
+      <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="LinkedIn Network" aria-label="LinkedIn Profile">
+        <i class="fa-brands fa-linkedin-in" style="color:#0a66c2"></i>
+      </a>
+      <a href="mailto:manojsunku2026@gmail.com" class="dock-item" data-tooltip="Send Email" aria-label="Email Me">
+        <i class="fa-solid fa-envelope" style="color:#ea4335"></i>
+      </a>
+      <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="WhatsApp (+91 7780391473)" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp" style="color:#25d366"></i>
+      </a>
+      <a href="https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="Resume PDF" aria-label="Google Drive Resume">
+        <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i>
+      </a>
+    </aside>
 
-    <!-- Cinematic grain overlay -->
-    <div class="noise-overlay" aria-hidden="true"></div>
+    <!-- ================= NAVBAR ================= -->
+    <header class="navbar-wrapper" id="navbar-wrapper">
+      <div class="container navbar">
+        <a href="#home" class="logo">
+          <img src="assets/profile-photo.jpeg" alt="Manoj Kumar Avatar" class="logo-avatar" />
+          <span class="logo-bracket">&lt;</span>
+          <span class="logo-name">Manoj Kumar</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
 
-    <!-- Cursor custom -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-ring" id="cursor-ring"></div>
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </nav>
 
-    <!-- Loading Screen -->
-    <div class="loader" id="loader">
-      <div class="loader__glitch" data-text="SMK">SMK</div>
-      <div class="loader__bar-wrap"><div class="loader__bar" id="loader-bar"></div></div>
-      <p class="loader__label">Loading Portfolio...</p>
-    </div>
+        <div class="nav-actions">
+          <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" class="nav-social-icon" title="GitHub (@manoj054)" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" class="nav-social-icon" title="LinkedIn Profile" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in" style="color:#0a66c2"></i>
+          </a>
+          <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="nav-social-icon" title="WhatsApp (+91 7780391473)" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp" style="color:#25d366"></i>
+          </a>
+          <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle theme">
+            <i class="fa-solid fa-moon"></i>
+          </button>
+          <a href="https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            Resume <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+          <button class="menu-toggle-btn" id="menu-toggle-btn" aria-label="Toggle Navigation Menu">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
 
-    <!-- Floating geometric shapes (background decor) -->
-    <div class="geo-shapes" aria-hidden="true">
-      <div class="geo geo-1"></div>
-      <div class="geo geo-2"></div>
-      <div class="geo geo-3"></div>
-      <div class="geo geo-4"></div>
-      <div class="geo geo-5"></div>
-    </div>
-
-    <!-- Top Navigation -->
-    <header class="topbar" id="topbar">
-      <a href="#home" class="brand">Sunku <span>Manoj Kumar</span></a>
-      <button class="nav-toggle" aria-label="Toggle menu" id="nav-toggle">
-        <span></span><span></span><span></span>
-      </button>
-      <nav class="nav-links" id="nav-links">
-        <a href="#home" class="nav-link">Home</a>
-        <a href="#about" class="nav-link">About</a>
-        <a href="#services" class="nav-link">Services</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </nav>
+      <!-- Mobile Navigation Drawer -->
+      <div class="mobile-nav-drawer" id="mobile-nav-drawer">
+        <div class="mobile-nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="mobile-nav-socials">
+          <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" class="nav-social-icon"><i class="fa-brands fa-github"></i></a>
+          <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" class="nav-social-icon"><i class="fa-brands fa-linkedin-in" style="color:#0a66c2"></i></a>
+          <a href="mailto:manojsunku2026@gmail.com" class="nav-social-icon"><i class="fa-solid fa-envelope" style="color:#ea4335"></i></a>
+          <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="nav-social-icon"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i></a>
+        </div>
+        <a href="https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="margin-top:8px">
+          View Resume <i class="fa-solid fa-file-pdf"></i>
+        </a>
+      </div>
     </header>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <!-- Spotlight beam that follows mouse -->
-      <div class="hero-spotlight" id="hero-spotlight"></div>
-
-      <div class="hero__text">
-        <p class="eyebrow"><span class="eyebrow-dot"></span>HELLO, I AM</p>
-
-        <h1 class="hero-title">
-          <span class="title-word word-1">Sunku Manoj Kumar</span><br/>
-          <span class="title-word word-2 gradient-text glitch-text" data-text="Manoj Kumar">Manoj Kumar</span>
-        </h1>
-
-        <p class="subtitle">
-          <span id="typed-role"></span><span class="typed-cursor">|</span>
-        </p>
-
-        <p class="hero-desc">
-          Aspiring Full-Stack Developer passionate about crafting beautiful web
-          experiences and intelligent AI solutions.
-        </p>
-
-        <div class="hero__actions">
-          <a class="btn btn-primary magnetic" href="#projects" id="view-work-btn">
-            <span class="btn-inner">View My Work <i class="fa-solid fa-arrow-right"></i></span>
-            <span class="btn-shine"></span>
-          </a>
-          <a class="btn btn-secondary magnetic" href="https://drive.google.com/file/d/1nPY3lgqedR53vRR-UbKwDHr4TNSzDLXA/view?usp=sharing" target="_blank" rel="noopener noreferrer" id="resume-btn">
-            <span class="btn-inner">View Resume <i class="fa-solid fa-file-pdf"></i></span>
-          </a>
-        </div>
-
-        <div class="hero__quick-links">
-          <a href="mailto:manojsunku2026@gmail.com" aria-label="Email" title="Email" class="ql-link magnetic" id="email-link"><i class="fa-solid fa-envelope"></i></a>
-          <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="ql-link magnetic" id="linkedin-link"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="ql-link magnetic" id="github-link"><i class="fa-brands fa-github"></i></a>
-        </div>
-
-        <div class="hero__github-stats">
-          <div class="stat-pill" id="stat-repos"><i class="fa-solid fa-code-branch"></i><span><span class="counter" data-target="9">0</span>+ Repos</span></div>
-          <div class="stat-pill"><i class="fa-solid fa-calendar-check"></i><span>2026 Graduate</span></div>
-          <div class="stat-pill pulse-pill"><i class="fa-solid fa-circle" style="color:#4ade80;font-size:0.5rem"></i><span>Open to Work</span></div>
-        </div>
-      </div>
-
-      <div class="hero__image">
-        <div class="image-orbit">
-          <!-- Morphing blob -->
-          <div class="blob-bg"></div>
-          <div class="orbit-ring ring-1"></div>
-          <div class="orbit-ring ring-2"></div>
-          <div class="orbit-ring ring-3"></div>
-          <!-- Floating icons -->
-          <div class="orbit-icon icon-react" title="React.js"><i class="fa-brands fa-react"></i></div>
-          <div class="orbit-icon icon-python" title="Python"><i class="fa-brands fa-python"></i></div>
-          <div class="orbit-icon icon-js" title="JavaScript"><i class="fa-brands fa-js"></i></div>
-          <div class="orbit-icon icon-github" title="GitHub"><i class="fa-brands fa-github"></i></div>
-          <div class="orbit-icon icon-django" title="Django"><i class="fa-solid fa-server"></i></div>
-          <img src="assets/profile-photo.jpeg" alt="Sunku Manoj Kumar" class="hero-photo" id="hero-photo" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Infinite Tech Ticker -->
-    <div class="ticker-wrap" aria-hidden="true">
-      <div class="ticker-track">
-        <span class="ticker-item"><i class="fa-brands fa-react"></i> React.js</span>
-        <span class="ticker-item"><i class="fa-brands fa-python"></i> Python</span>
-        <span class="ticker-item"><i class="fa-brands fa-js"></i> JavaScript</span>
-        <span class="ticker-item"><i class="fa-solid fa-server"></i> Django</span>
-        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> FastAPI</span>
-        <span class="ticker-item"><i class="fa-solid fa-database"></i> MySQL</span>
-        <span class="ticker-item"><i class="fa-solid fa-brain"></i> AI / ML</span>
-        <span class="ticker-item"><i class="fa-brands fa-git-alt"></i> Git</span>
-        <span class="ticker-item"><i class="fa-brands fa-github"></i> GitHub</span>
-        <span class="ticker-item"><i class="fa-solid fa-eye"></i> OpenCV</span>
-        <span class="ticker-item"><i class="fa-brands fa-html5"></i> HTML5</span>
-        <span class="ticker-item"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-        <!-- Duplicate for seamless loop -->
-        <span class="ticker-item"><i class="fa-brands fa-react"></i> React.js</span>
-        <span class="ticker-item"><i class="fa-brands fa-python"></i> Python</span>
-        <span class="ticker-item"><i class="fa-brands fa-js"></i> JavaScript</span>
-        <span class="ticker-item"><i class="fa-solid fa-server"></i> Django</span>
-        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> FastAPI</span>
-        <span class="ticker-item"><i class="fa-solid fa-database"></i> MySQL</span>
-        <span class="ticker-item"><i class="fa-solid fa-brain"></i> AI / ML</span>
-        <span class="ticker-item"><i class="fa-brands fa-git-alt"></i> Git</span>
-        <span class="ticker-item"><i class="fa-brands fa-github"></i> GitHub</span>
-        <span class="ticker-item"><i class="fa-solid fa-eye"></i> OpenCV</span>
-        <span class="ticker-item"><i class="fa-brands fa-html5"></i> HTML5</span>
-        <span class="ticker-item"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-      </div>
-    </div>
-
     <main>
-      <!-- ABOUT -->
-      <section class="section about" id="about">
-        <div class="section-heading reveal-up">
-          <p class="section-tag">About Me</p>
-          <h2 class="scramble-heading">Building modern web experiences with curiosity and consistency</h2>
-        </div>
-        <div class="about__grid">
-          <div class="about__content reveal-left">
-            <p>I am an aspiring Full-Stack Developer with a strong interest in building modern, responsive, and user-friendly web applications. I enjoy solving real-world problems through programming and continuously learning new technologies.</p>
-            <p>My primary focus is on <strong>React.js</strong>, <strong>Python</strong>, <strong>Django</strong>, JavaScript, and frontend development, while also expanding into backend engineering and AI/ML applications.</p>
-            <p>I believe in writing clean, efficient, and maintainable code while continuously improving my technical and problem-solving abilities.</p>
-            <div class="about__info-grid">
-              <div class="info-card tilt-card">
-                <div class="info-icon"><i class="fa-solid fa-graduation-cap"></i></div>
-                <div><span class="info-label">Degree</span><span class="info-value">B.Tech CSE (AI)</span></div>
-              </div>
-              <div class="info-card tilt-card">
-                <div class="info-icon"><i class="fa-solid fa-star"></i></div>
-                <div><span class="info-label">CGPA</span><span class="info-value">7.76</span></div>
-              </div>
-              <div class="info-card tilt-card">
-                <div class="info-icon"><i class="fa-solid fa-map-marker-alt"></i></div>
-                <div><span class="info-label">Location</span><span class="info-value">India</span></div>
-              </div>
-              <div class="info-card tilt-card">
-                <div class="info-icon"><i class="fa-solid fa-briefcase"></i></div>
-                <div><span class="info-label">Status</span><span class="info-value available">Available</span></div>
-              </div>
+      <!-- ================= HERO SECTION ================= -->
+      <section class="hero" id="home">
+        <div class="container hero-grid">
+          
+          <!-- Hero Content (Left) -->
+          <div class="hero-content">
+            <div class="hero-profile-pill">
+              <img src="assets/profile-photo.jpeg" alt="Sunku Manoj Kumar" class="hero-pill-avatar" />
+              <span class="hero-pill-text">
+                <span class="pulse-dot"></span> Available for Full-Stack &amp; AI Roles
+              </span>
             </div>
-          </div>
-          <div class="about__image-card reveal-right">
-            <img src="assets/profile-photo.jpeg" alt="About Sunku Manoj Kumar" />
-            <div class="about-badge"><i class="fa-solid fa-code"></i><span>Full-Stack Dev</span></div>
-            <div class="card-sheen"></div>
-          </div>
-        </div>
-      </section>
 
-      <!-- SERVICES -->
-      <section class="section services" id="services">
-        <div class="section-heading reveal-up">
-          <p class="section-tag">My Expertise</p>
-          <h2>Skills I am actively building and applying</h2>
-        </div>
-        <div class="services__grid">
-          <article class="service-card reveal-up holographic" style="--delay:0ms">
-            <div class="service-icon"><i class="fa-solid fa-code"></i></div>
-            <h3>Frontend Development</h3>
-            <p>Creating responsive, interactive, and modern UI experiences using React.js, HTML5, CSS3, JavaScript, and Bootstrap.</p>
-            <div class="service-tech"><span>React.js</span><span>HTML5</span><span>CSS3</span></div>
-            <div class="card-sheen"></div>
-          </article>
-          <article class="service-card reveal-up holographic" style="--delay:120ms">
-            <div class="service-icon"><i class="fa-solid fa-database"></i></div>
-            <h3>Backend &amp; API Development</h3>
-            <p>Developing backend logic, REST APIs, authentication, and CRUD workflows with Python, Django, Flask, FastAPI, and MySQL.</p>
-            <div class="service-tech"><span>Django</span><span>FastAPI</span><span>REST API</span></div>
-            <div class="card-sheen"></div>
-          </article>
-          <article class="service-card reveal-up holographic" style="--delay:240ms">
-            <div class="service-icon"><i class="fa-solid fa-brain"></i></div>
-            <h3>AI &amp; Problem Solving</h3>
-            <p>Exploring machine learning, AI-powered applications, and strong algorithmic thinking to build practical, intelligent projects.</p>
-            <div class="service-tech"><span>OpenCV</span><span>DeepFace</span><span>ML</span></div>
-            <div class="card-sheen"></div>
-          </article>
-        </div>
-      </section>
+            <div class="hero-greeting">Hi there, I'm</div>
+            <h1 class="hero-name">Sunku Manoj Kumar</h1>
+            
+            <!-- Animated Typewriter Headline -->
+            <div class="hero-title">
+              <span id="hero-typed-text">Full-Stack Developer</span><span class="typed-cursor">|</span>
+            </div>
 
-      <!-- PROJECTS -->
-      <section class="section projects" id="projects">
-        <div class="section-heading reveal-up">
-          <p class="section-tag">Featured Projects</p>
-          <h2>Projects that demonstrate my technical range and creativity</h2>
-        </div>
-        <div class="projects__grid">
-          <article class="project-card reveal-up" style="--delay:0ms">
-            <div class="project-card__img-wrap">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Face Emotion Detection" />
-              <div class="project-overlay">
-                <a href="https://github.com/manoj054/face-emotion-detector" target="_blank" rel="noopener noreferrer" class="overlay-btn magnetic" id="project-face-github">
-                  <i class="fa-brands fa-github"></i> View Code
+            <!-- Quick Stat Badges -->
+            <div class="hero-stat-pills">
+              <span class="stat-pill"><i class="fa-solid fa-code-branch"></i> 9+ Repositories</span>
+              <span class="stat-pill"><i class="fa-solid fa-graduation-cap"></i> 7.76 CGPA</span>
+              <span class="stat-pill"><i class="fa-solid fa-calendar-check"></i> 2026 Batch</span>
+              <span class="stat-pill pulse-pill"><i class="fa-solid fa-circle"></i> Open to Work</span>
+            </div>
+
+            <p class="hero-description">
+              Aspiring software engineer specializing in building high-performance <strong>RESTful APIs</strong>, modern <strong>React.js web applications</strong>, and <strong>AI-powered computer vision solutions</strong> with clean, scalable Python and JavaScript architecture.
+            </p>
+
+            <div class="hero-buttons">
+              <a href="#projects" class="btn btn-primary">
+                View Projects <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="border-color:#25d366">
+                <i class="fa-brands fa-whatsapp" style="color:#25d366;font-size:17px"></i> WhatsApp Me
+              </a>
+              <a href="https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="hero-resume-btn">
+                Resume <i class="fa-solid fa-file-pdf"></i>
+              </a>
+            </div>
+
+            <!-- Enhanced Hero Social Chips with Icons -->
+            <div class="hero-socials">
+              <span class="hero-socials-label"><i class="fa-solid fa-share-nodes"></i> Connect Across Platforms:</span>
+              <div class="hero-social-chips">
+                <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" class="social-chip chip-github">
+                  <i class="fa-brands fa-github"></i> <span>GitHub</span>
+                </a>
+                <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" class="social-chip chip-linkedin">
+                  <i class="fa-brands fa-linkedin-in" style="color:#0a66c2"></i> <span>LinkedIn</span>
+                </a>
+                <a href="mailto:manojsunku2026@gmail.com" class="social-chip chip-email">
+                  <i class="fa-solid fa-envelope" style="color:#ea4335"></i> <span>Email</span>
+                </a>
+                <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="social-chip chip-whatsapp">
+                  <i class="fa-brands fa-whatsapp" style="color:#25d366"></i> <span>WhatsApp</span>
+                </a>
+                <a href="https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="social-chip chip-resume">
+                  <i class="fa-solid fa-file-pdf"></i> <span>Resume</span>
                 </a>
               </div>
-              <div class="project-glow"></div>
             </div>
-            <div class="project-card__info">
-              <div class="project-number">01</div>
-              <h3>Face Emotion Detection System</h3>
-              <p>AI-powered app detecting emotions from images and webcam using Python, Django, OpenCV, and DeepFace with real-time analysis.</p>
-              <div class="project-tags"><span>Python</span><span>Django</span><span>OpenCV</span><span>DeepFace</span><span>AI/ML</span></div>
-            </div>
-          </article>
+          </div>
 
-          <article class="project-card reveal-up" style="--delay:120ms">
-            <div class="project-card__img-wrap">
-              <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=600&q=80" alt="3D Earth Login" />
-              <div class="project-overlay">
-                <a href="https://github.com/manoj054/react" target="_blank" rel="noopener noreferrer" class="overlay-btn magnetic" id="project-3d-github">
-                  <i class="fa-brands fa-github"></i> View Code
-                </a>
-              </div>
-              <div class="project-glow"></div>
-            </div>
-            <div class="project-card__info">
-              <div class="project-number">02</div>
-              <h3>3D Earth Animated Login Page</h3>
-              <p>Interactive login page featuring a rotating 3D Earth built with React.js, Three.js, React Three Fiber, and Drei.</p>
-              <div class="project-tags"><span>React.js</span><span>Three.js</span><span>R3F</span><span>Drei</span></div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-up" style="--delay:0ms">
-            <div class="project-card__img-wrap">
-              <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=600&q=80" alt="Authentication System" />
-              <div class="project-overlay">
-                <a href="https://github.com/manoj054/authentication" target="_blank" rel="noopener noreferrer" class="overlay-btn magnetic" id="project-auth-github">
-                  <i class="fa-brands fa-github"></i> View Code
-                </a>
-              </div>
-              <div class="project-glow"></div>
-            </div>
-            <div class="project-card__info">
-              <div class="project-number">03</div>
-              <h3>Authentication System</h3>
-              <p>Secure authentication app with JWT tokens, login/signup flows, and protected routes built with Python backend.</p>
-              <div class="project-tags"><span>Python</span><span>FastAPI</span><span>JWT</span><span>MySQL</span></div>
-            </div>
-          </article>
-
-          <article class="project-card reveal-up" style="--delay:120ms">
-            <div class="project-card__img-wrap">
-              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="Employee Management" />
-              <div class="project-overlay">
-                <a href="https://github.com/manoj054/javascript" target="_blank" rel="noopener noreferrer" class="overlay-btn magnetic" id="project-emp-github">
-                  <i class="fa-brands fa-github"></i> View Code
-                </a>
-              </div>
-              <div class="project-glow"></div>
-            </div>
-            <div class="project-card__info">
-              <div class="project-number">04</div>
-              <h3>Employee Management System</h3>
-              <p>CRUD-based employee management app using HTML, CSS, JavaScript, and browser Local Storage for data persistence.</p>
-              <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>LocalStorage</span></div>
-            </div>
-          </article>
-        </div>
-        <div class="projects__cta reveal-up">
-          <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" class="btn btn-outline magnetic" id="all-repos-btn">
-            <span class="btn-inner"><i class="fa-brands fa-github"></i> View All GitHub Repos</span>
-          </a>
-        </div>
-      </section>
-
-      <!-- SKILLS -->
-      <section class="section skills" id="skills">
-        <div class="section-heading reveal-up">
-          <p class="section-tag">Technical Skills</p>
-          <h2>My core stack, tools, and technical concepts</h2>
-        </div>
-
-        <div class="skills__progress reveal-up">
-          <div class="skill-bar-item">
-            <div class="skill-bar-header"><span class="skill-name"><i class="fa-brands fa-react"></i> React.js</span><span class="skill-percent">85%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85" style="--bar-color:#61dafb"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-header"><span class="skill-name"><i class="fa-brands fa-python"></i> Python</span><span class="skill-percent">80%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80" style="--bar-color:#3776ab"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-header"><span class="skill-name"><i class="fa-brands fa-js"></i> JavaScript</span><span class="skill-percent">78%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="78" style="--bar-color:#f7df1e"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-header"><span class="skill-name"><i class="fa-solid fa-server"></i> Django / FastAPI</span><span class="skill-percent">72%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="72" style="--bar-color:#06b6d4"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-header"><span class="skill-name"><i class="fa-solid fa-database"></i> MySQL / SQLite</span><span class="skill-percent">70%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70" style="--bar-color:#00758f"></div></div>
-          </div>
-          <div class="skill-bar-item">
-            <div class="skill-bar-header"><span class="skill-name"><i class="fa-solid fa-brain"></i> AI / ML</span><span class="skill-percent">65%</span></div>
-            <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65" style="--bar-color:#ff7a6b"></div></div>
-          </div>
-        </div>
-
-        <div class="skills__groups">
-          <div class="skills__group reveal-up" style="--delay:0ms">
-            <div class="skills-group-header"><div class="group-icon"><i class="fa-solid fa-laptop-code"></i></div><h3>Frontend</h3></div>
-            <div class="chip-row">
-              <span class="chip"><i class="fa-brands fa-html5"></i> HTML5</span>
-              <span class="chip"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-              <span class="chip"><i class="fa-brands fa-js"></i> JavaScript</span>
-              <span class="chip"><i class="fa-brands fa-react"></i> React.js</span>
-              <span class="chip">React Router</span>
-              <span class="chip">Context API</span>
-              <span class="chip">Responsive Design</span>
-              <span class="chip"><i class="fa-brands fa-bootstrap"></i> Bootstrap</span>
-            </div>
-          </div>
-          <div class="skills__group reveal-up" style="--delay:100ms">
-            <div class="skills-group-header"><div class="group-icon"><i class="fa-solid fa-server"></i></div><h3>Backend</h3></div>
-            <div class="chip-row">
-              <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
-              <span class="chip">Django</span><span class="chip">FastAPI</span>
-              <span class="chip">REST API</span><span class="chip">Flask (Basic)</span>
-              <span class="chip">JWT Auth</span>
-            </div>
-          </div>
-          <div class="skills__group reveal-up" style="--delay:200ms">
-            <div class="skills-group-header"><div class="group-icon"><i class="fa-solid fa-database"></i></div><h3>Database</h3></div>
-            <div class="chip-row"><span class="chip">MySQL</span><span class="chip">SQLite</span><span class="chip">CRUD Operations</span></div>
-          </div>
-          <div class="skills__group reveal-up" style="--delay:300ms">
-            <div class="skills-group-header"><div class="group-icon"><i class="fa-solid fa-code"></i></div><h3>Languages</h3></div>
-            <div class="chip-row"><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">Java</span><span class="chip">C</span><span class="chip">C++</span></div>
-          </div>
-          <div class="skills__group reveal-up" style="--delay:400ms">
-            <div class="skills-group-header"><div class="group-icon"><i class="fa-solid fa-wrench"></i></div><h3>Tools</h3></div>
-            <div class="chip-row">
-              <span class="chip"><i class="fa-brands fa-git-alt"></i> Git</span>
-              <span class="chip"><i class="fa-brands fa-github"></i> GitHub</span>
-              <span class="chip">VS Code</span><span class="chip">Postman</span>
-            </div>
-          </div>
-          <div class="skills__group reveal-up" style="--delay:500ms">
-            <div class="skills-group-header"><div class="group-icon"><i class="fa-solid fa-lightbulb"></i></div><h3>Concepts</h3></div>
-            <div class="chip-row"><span class="chip">OOP</span><span class="chip">Data Structures</span><span class="chip">Algorithms</span><span class="chip">API Integration</span><span class="chip">Authentication</span></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- EDUCATION -->
-      <section class="section education" id="education">
-        <div class="section-heading reveal-up">
-          <p class="section-tag">Education</p>
-          <h2>My academic foundation and learning milestones</h2>
-        </div>
-        <div class="education__grid">
-          <article class="edu-card reveal-left">
-            <div class="edu-icon-wrap"><div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div></div>
-            <div class="edu-details">
-              <h3>Bachelor of Technology (B.Tech)</h3>
-              <div class="edu-meta-list">
-                <div class="edu-meta-row"><span class="edu-key">Branch</span><span class="edu-value">Computer Science and Engineering (Artificial Intelligence)</span></div>
-                <div class="edu-meta-row"><span class="edu-key">Graduation Year</span><span class="edu-value">2026</span></div>
-                <div class="edu-meta-row"><span class="edu-key">College</span><span class="edu-value">Annamacharya Institute of Technology and Sciences</span></div>
-                <div class="edu-meta-row"><span class="edu-key">CGPA</span><span class="edu-value cgpa-badge">7.76 / 10</span></div>
+          <!-- Hero Visual & Code Window (Right) -->
+          <div class="hero-visual">
+            
+            <!-- Floating Badge Top -->
+            <div class="floating-badge badge-top">
+              <i class="devicon-fastapi-plain" style="color:#009688"></i>
+              <div>
+                <strong>FastAPI + Django</strong>
+                <span class="badge-sub">High-Throughput APIs</span>
               </div>
             </div>
-            <div class="card-sheen"></div>
-          </article>
-          <article class="edu-card github-activity-card reveal-right">
-            <div class="edu-icon-wrap"><div class="edu-icon"><i class="fa-brands fa-github"></i></div></div>
-            <div class="edu-details">
-              <h3>GitHub Activity</h3>
-              <div class="github-stats-grid">
-                <div class="github-stat"><span class="gs-value counter" data-target="9">0</span><span class="gs-label">Repositories</span></div>
-                <div class="github-stat"><span class="gs-value">CSS</span><span class="gs-label">Top Language</span></div>
-                <div class="github-stat"><span class="gs-value">2024</span><span class="gs-label">Member Since</span></div>
-                <div class="github-stat"><span class="gs-value neon-green">Active</span><span class="gs-label">Status</span></div>
-              </div>
-              <div class="github-languages">
-                <div class="lang-bar">
-                  <div class="lang-fill" style="width:40%;background:#563d7c"></div>
-                  <div class="lang-fill" style="width:30%;background:#e34c26"></div>
-                  <div class="lang-fill" style="width:20%;background:#3572A5"></div>
-                  <div class="lang-fill" style="width:10%;background:#2b7489"></div>
+
+            <!-- Code Window Card -->
+            <div class="code-window-card">
+              <!-- Mini Dev Bar -->
+              <div class="hero-dev-mini-bar">
+                <div class="dev-mini-left">
+                  <img src="assets/profile-photo.jpeg" alt="Manoj Kumar Avatar" class="dev-mini-avatar" />
+                  <div>
+                    <span class="dev-mini-name">Sunku Manoj Kumar</span>
+                    <span class="dev-mini-role">React • Python • AI / ML</span>
+                  </div>
                 </div>
-                <div class="lang-legend">
-                  <span style="--clr:#563d7c">CSS</span>
-                  <span style="--clr:#e34c26">HTML</span>
-                  <span style="--clr:#3572A5">Python</span>
-                  <span style="--clr:#2b7489">TypeScript</span>
+                <div class="dev-mini-status">
+                  <i class="fa-solid fa-circle-check"></i> Ready to Deploy
+                </div>
+              </div>
+
+              <!-- Code Window Header & Tabs -->
+              <div class="code-window-header">
+                <div class="window-controls">
+                  <span class="control-dot red"></span>
+                  <span class="control-dot yellow"></span>
+                  <span class="control-dot green"></span>
+                </div>
+                <div class="window-tabs">
+                  <button class="window-tab active" data-target="pane-fastapi" data-badge="Python 3.12">
+                    <i class="devicon-fastapi-plain" style="color:#009688"></i> main.py
+                  </button>
+                  <button class="window-tab" data-target="pane-ai" data-badge="OpenCV / DeepFace">
+                    <i class="fa-solid fa-brain" style="color:#a855f7"></i> emotion_ai.py
+                  </button>
+                  <button class="window-tab" data-target="pane-react" data-badge="React 18">
+                    <i class="devicon-react-original" style="color:#61dafb"></i> App.jsx
+                  </button>
+                </div>
+
+                <!-- Run Code & Copy Actions -->
+                <div class="code-window-actions">
+                  <button class="code-action-btn" id="run-code-btn" title="Simulate Running Code">
+                    <i class="fa-solid fa-play"></i> Run
+                  </button>
+                  <button class="code-action-btn" id="copy-code-btn" title="Copy Active Code">
+                    <i class="fa-regular fa-copy"></i> Copy
+                  </button>
+                </div>
+              </div>
+
+              <!-- Code Window Body (JetBrains Mono) -->
+              <div class="code-window-body">
+                <!-- Pane 1: FastAPI -->
+                <div class="code-tab-pane active" id="pane-fastapi">
+                  <code>
+                    <span class="code-line"><span class="code-comment"># FastAPI REST Backend Service</span></span>
+                    <span class="code-line"><span class="code-keyword">from</span> fastapi <span class="code-keyword">import</span> FastAPI, Depends, HTTPException</span>
+                    <span class="code-line"><span class="code-keyword">from</span> pydantic <span class="code-keyword">import</span> BaseModel</span>
+                    <span class="code-line"><span class="code-keyword">from</span> app.security <span class="code-keyword">import</span> verify_jwt_token</span>
+                    <span class="code-line">&nbsp;</span>
+                    <span class="code-line">app = <span class="code-func">FastAPI</span>(title=<span class="code-string">"ManojKumar FullStack API"</span>, version=<span class="code-string">"2.0"</span>)</span>
+                    <span class="code-line">&nbsp;</span>
+                    <span class="code-line"><span class="code-decorator">@app.get</span>(<span class="code-string">"/api/developer"</span>)</span>
+                    <span class="code-line"><span class="code-keyword">async def</span> <span class="code-func">get_profile</span>(user = <span class="code-func">Depends</span>(verify_jwt_token)):</span>
+                    <span class="code-line">    <span class="code-keyword">return</span> {</span>
+                    <span class="code-line">        <span class="code-string">"name"</span>: <span class="code-string">"Sunku Manoj Kumar"</span>,</span>
+                    <span class="code-line">        <span class="code-string">"degree"</span>: <span class="code-string">"B.Tech CSE (AI) - 2026"</span>,</span>
+                    <span class="code-line">        <span class="code-string">"status"</span>: <span class="code-string">"Open to Opportunities"</span>,</span>
+                    <span class="code-line">        <span class="code-string">"stack"</span>: [<span class="code-string">"React.js"</span>, <span class="code-string">"FastAPI"</span>, <span class="code-string">"Django"</span>, <span class="code-string">"MySQL"</span>]</span>
+                    <span class="code-line">    }</span>
+                  </code>
+                </div>
+
+                <!-- Pane 2: OpenCV & DeepFace -->
+                <div class="code-tab-pane" id="pane-ai">
+                  <code>
+                    <span class="code-line"><span class="code-comment"># Real-Time Face Emotion AI Engine</span></span>
+                    <span class="code-line"><span class="code-keyword">import</span> cv2</span>
+                    <span class="code-line"><span class="code-keyword">from</span> deepface <span class="code-keyword">import</span> DeepFace</span>
+                    <span class="code-line">&nbsp;</span>
+                    <span class="code-line"><span class="code-keyword">def</span> <span class="code-func">analyze_stream</span>(frame):</span>
+                    <span class="code-line">    predictions = DeepFace.<span class="code-func">analyze</span>(</span>
+                    <span class="code-line">        img_path=frame,</span>
+                    <span class="code-line">        actions=[<span class="code-string">'emotion'</span>],</span>
+                    <span class="code-line">        enforce_detection=<span class="code-keyword">False</span></span>
+                    <span class="code-line">    )</span>
+                    <span class="code-line">    dominant = predictions[<span class="code-num">0</span>][<span class="code-string">'dominant_emotion'</span>]</span>
+                    <span class="code-line">    <span class="code-keyword">return</span> {<span class="code-string">"emotion"</span>: dominant, <span class="code-string">"confidence"</span>: <span class="code-num">0.96</span>}</span>
+                  </code>
+                </div>
+
+                <!-- Pane 3: React -->
+                <div class="code-tab-pane" id="pane-react">
+                  <code>
+                    <span class="code-line"><span class="code-comment">// React 18 Dynamic Experience Component</span></span>
+                    <span class="code-line"><span class="code-keyword">import</span> React, { useState, useEffect } <span class="code-keyword">from</span> <span class="code-string">'react'</span>;</span>
+                    <span class="code-line">&nbsp;</span>
+                    <span class="code-line"><span class="code-keyword">export default function</span> <span class="code-func">PortfolioHero</span>() {</span>
+                    <span class="code-line">  <span class="code-keyword">const</span> [status, setStatus] = <span class="code-func">useState</span>(<span class="code-string">'Ready to Build'</span>);</span>
+                    <span class="code-line">&nbsp;</span>
+                    <span class="code-line">  <span class="code-keyword">return</span> (</span>
+                    <span class="code-line">    &lt;<span class="code-type">div</span> className=<span class="code-string">"developer-badge"</span>&gt;</span>
+                    <span class="code-line">      &lt;<span class="code-type">h3</span>&gt;Sunku Manoj Kumar&lt;/<span class="code-type">h3</span>&gt;</span>
+                    <span class="code-line">      &lt;<span class="code-type">p</span>&gt;Full-Stack Engineer &amp; AI Specialist&lt;/<span class="code-type">p</span>&gt;</span>
+                    <span class="code-line">    &lt;/<span class="code-type">div</span>&gt;</span>
+                    <span class="code-line">  );</span>
+                    <span class="code-line">}</span>
+                  </code>
+                </div>
+              </div>
+
+              <!-- Live Execution Output Drawer -->
+              <div class="terminal-console-drawer" id="terminal-console-drawer"></div>
+
+              <!-- Code Window Footer (VS Code Status Bar) -->
+              <div class="code-window-footer">
+                <div class="status-left">
+                  <span class="status-item"><i class="fa-solid fa-code-branch"></i> main*</span>
+                  <span class="status-item"><i class="fa-solid fa-arrows-rotate"></i> 0 errors</span>
+                  <span class="status-item"><i class="fa-solid fa-shield-halved"></i> UTF-8</span>
+                </div>
+                <div class="status-right">
+                  <span class="status-item"><i class="fa-solid fa-check-double"></i> Tests: 100% Passing</span>
+                  <span class="status-item">Spaces: 4</span>
                 </div>
               </div>
             </div>
-            <div class="card-sheen"></div>
-          </article>
+
+            <!-- Floating Badge Bottom -->
+            <div class="floating-badge badge-bottom">
+              <i class="fa-solid fa-brain" style="color:#0284c7"></i>
+              <div>
+                <strong>OpenCV + DeepFace</strong>
+                <span class="badge-sub">Real-Time Emotion AI</span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      <!-- CONTACT -->
-      <section class="section contact" id="contact">
-        <div class="section-heading text-center reveal-up">
-          <p class="section-tag">Get In Touch</p>
-          <h2 class="contact-title neon-title">Contact Me</h2>
-          <p class="contact-subtitle">Have an opportunity, a project proposal, or just want to say hi? Drop a message!</p>
-        </div>
-        <div class="contact__layout">
-          <div class="contact__info reveal-left">
-            <div class="contact-info-item"><div class="ci-icon"><i class="fa-solid fa-envelope"></i></div><div><span class="ci-label">Email</span><a href="mailto:manojsunku2026@gmail.com" class="ci-value">manojsunku2026@gmail.com</a></div></div>
-            <div class="contact-info-item"><div class="ci-icon"><i class="fa-brands fa-linkedin-in"></i></div><div><span class="ci-label">LinkedIn</span><a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" class="ci-value">manoj-kumar-sunku</a></div></div>
-            <div class="contact-info-item"><div class="ci-icon"><i class="fa-brands fa-github"></i></div><div><span class="ci-label">GitHub</span><a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" class="ci-value">@manoj054</a></div></div>
-            <div class="contact-info-item"><div class="ci-icon"><i class="fa-solid fa-map-marker-alt"></i></div><div><span class="ci-label">Location</span><span class="ci-value">India</span></div></div>
+      <!-- ================= TECH RIBBON ================= -->
+      <div class="tech-ribbon" aria-hidden="true">
+        <div class="container tech-ribbon-content">
+          <div class="tech-ribbon-label">
+            <i class="fa-solid fa-layer-group"></i> Core Stack &amp; Tools:
           </div>
-          <div class="contact__card reveal-right">
-            <form id="contact-form" class="contact__form">
-              <div class="form-group form-group--full">
-                <label for="contact-name">Your Name</label>
-                <input id="contact-name" name="name" type="text" placeholder="John Doe" required />
+          <div class="tech-ribbon-items">
+            <span class="tech-pill"><i class="devicon-react-original colored"></i> React.js</span>
+            <span class="tech-pill"><i class="devicon-python-plain colored"></i> Python 3</span>
+            <span class="tech-pill"><i class="devicon-django-plain colored"></i> Django</span>
+            <span class="tech-pill"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+            <span class="tech-pill"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+            <span class="tech-pill"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+            <span class="tech-pill"><i class="devicon-opencv-plain colored"></i> OpenCV</span>
+            <span class="tech-pill"><i class="devicon-threejs-original"></i> Three.js</span>
+            <span class="tech-pill"><i class="devicon-git-plain colored"></i> Git</span>
+            <span class="tech-pill"><i class="devicon-postman-plain colored"></i> Postman</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= ABOUT SECTION ================= -->
+      <section class="section" id="about">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag"><i class="fa-solid fa-user-tie"></i> About Me</span>
+            <h2 class="section-title">Engineering Reliable Applications with Curiosity &amp; Precision</h2>
+            <p class="section-subtitle">A balanced fusion of clean frontend design, robust backend architectures, and intelligent machine learning algorithms.</p>
+          </div>
+
+          <div class="about-grid">
+            <!-- Left: Photo Card -->
+            <div class="about-photo-wrapper">
+              <div class="about-photo-card">
+                <img src="assets/profile-photo.jpeg" alt="Sunku Manoj Kumar Portrait" />
+                <div class="about-card-badge">
+                  <div class="about-badge-icon">
+                    <i class="fa-solid fa-code"></i>
+                  </div>
+                  <div class="about-badge-text">
+                    <h4>Sunku Manoj Kumar</h4>
+                    <p>B.Tech CSE (AI) • 2026 Graduate</p>
+                  </div>
+                </div>
               </div>
-              <div class="form-group form-group--full">
-                <label for="contact-email">Your Email</label>
-                <input id="contact-email" name="email" type="email" placeholder="john@example.com" required />
+            </div>
+
+            <!-- Right: Content -->
+            <div class="about-content">
+              <h3 class="about-heading">Building Scalable Full-Stack Systems with Clean Code &amp; Modern AI Foundations</h3>
+              
+              <p class="about-text-p">
+                I am a Computer Science &amp; Engineering (AI) student at <strong>AITS</strong> with a deep passion for designing resilient backend APIs, intuitive user interfaces, and computer vision utilities. My development philosophy focuses on writing <strong>modular, type-safe, and self-documenting code</strong> that delivers exceptional speed and user experience.
+              </p>
+
+              <p class="about-text-p">
+                My primary expertise encompasses <strong>React.js</strong> and modern JavaScript on the client side, paired with <strong>Python (Django, FastAPI)</strong> and <strong>MySQL</strong> on the backend. In parallel, I actively engineer machine learning pipelines using <strong>OpenCV</strong> and <strong>DeepFace</strong> to create real-time perception models.
+              </p>
+
+              <!-- About Quick Links Strip with Icons -->
+              <div class="about-social-strip">
+                <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" class="about-social-btn">
+                  <i class="fa-brands fa-github"></i> GitHub Repos
+                </a>
+                <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" class="about-social-btn">
+                  <i class="fa-brands fa-linkedin-in" style="color:#0a66c2"></i> LinkedIn
+                </a>
+                <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="about-social-btn">
+                  <i class="fa-brands fa-whatsapp" style="color:#25d366"></i> WhatsApp
+                </a>
+                <a href="mailto:manojsunku2026@gmail.com" class="about-social-btn">
+                  <i class="fa-solid fa-envelope" style="color:#ea4335"></i> Email
+                </a>
+                <a href="https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="about-social-btn">
+                  <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> Resume PDF
+                </a>
               </div>
-              <div class="form-group form-group--full">
-                <label for="contact-message">Your Message</label>
-                <textarea id="contact-message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+
+              <!-- 4 Engineering Pillars -->
+              <div class="about-pillars-grid">
+                <div class="pillar-card">
+                  <div class="pillar-header">
+                    <div class="pillar-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h4>Frontend Engineering</h4>
+                  </div>
+                  <p>Interactive single-page apps using React.js, modern CSS, Context API, and 3D visual models with Three.js.</p>
+                </div>
+
+                <div class="pillar-card">
+                  <div class="pillar-header">
+                    <div class="pillar-icon"><i class="fa-solid fa-server"></i></div>
+                    <h4>Backend &amp; REST APIs</h4>
+                  </div>
+                  <p>Scalable RESTful microservices with Django and FastAPI, JWT token authorization, and MVC/MVT architecture.</p>
+                </div>
+
+                <div class="pillar-card">
+                  <div class="pillar-header">
+                    <div class="pillar-icon"><i class="fa-solid fa-brain"></i></div>
+                    <h4>Computer Vision &amp; AI</h4>
+                  </div>
+                  <p>Facial analysis, real-time emotion classification with OpenCV &amp; DeepFace, and applied machine learning.</p>
+                </div>
+
+                <div class="pillar-card">
+                  <div class="pillar-header">
+                    <div class="pillar-icon"><i class="fa-solid fa-database"></i></div>
+                    <h4>Data &amp; Integrity</h4>
+                  </div>
+                  <p>Relational database modeling with MySQL &amp; SQLite, ACID transactions, and optimized indexing.</p>
+                </div>
               </div>
-              <button type="submit" id="contact-send-btn" class="btn btn-primary contact-btn-full magnetic">
-                <span class="btn-inner">Send Message <i class="fa-solid fa-paper-plane"></i></span>
-                <span class="btn-shine"></span>
-              </button>
-              <p id="form-status" class="form-status" aria-live="polite"></p>
-            </form>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SYSTEM ARCHITECTURE FLOW ================= -->
+      <section class="section section-alt" id="architecture">
+        <div class="container">
+          <div class="architecture-box">
+            <div class="arch-header">
+              <span class="section-tag"><i class="fa-solid fa-diagram-project"></i> Application Workflow</span>
+              <h3>Full-Stack System Architecture</h3>
+              <p>How I structure end-to-end data pipelines from browser interactions to AI classification and database persistence.</p>
+            </div>
+
+            <div class="flow-diagram">
+              <div class="flow-node">
+                <div class="flow-node-icon"><i class="devicon-react-original colored"></i></div>
+                <h5>1. Client Layer</h5>
+                <span>React.js / Three.js UI</span>
+              </div>
+              <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+              <div class="flow-node">
+                <div class="flow-node-icon"><i class="devicon-fastapi-plain colored"></i></div>
+                <h5>2. API Gateway</h5>
+                <span>FastAPI / JWT Auth</span>
+              </div>
+              <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+              <div class="flow-node">
+                <div class="flow-node-icon"><i class="fa-solid fa-brain" style="color:#a855f7"></i></div>
+                <h5>3. AI Model Engine</h5>
+                <span>OpenCV &amp; DeepFace</span>
+              </div>
+              <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+              <div class="flow-node">
+                <div class="flow-node-icon"><i class="devicon-mysql-plain colored"></i></div>
+                <h5>4. Database Layer</h5>
+                <span>MySQL / SQLite</span>
+              </div>
+              <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+
+              <div class="flow-node">
+                <div class="flow-node-icon"><i class="fa-solid fa-bolt" style="color:#10b981"></i></div>
+                <h5>5. Response &amp; Analytics</h5>
+                <span>Real-Time Inference</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= TECHNICAL SKILLS ================= -->
+      <section class="section" id="skills">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag"><i class="fa-solid fa-screwdriver-wrench"></i> Technical Competencies</span>
+            <h2 class="section-title">My Tech Stack &amp; Developer Toolset</h2>
+            <p class="section-subtitle">Proficiencies developed through practical projects, computer science coursework, and continuous experimentation.</p>
+          </div>
+
+          <div class="skills-grid">
+            <!-- 1. Frontend -->
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <div class="category-icon"><i class="fa-solid fa-desktop"></i></div>
+                <h3>Frontend Development</h3>
+              </div>
+              <div class="skill-badges">
+                <span class="skill-badge highlight"><i class="devicon-react-original colored"></i> React.js</span>
+                <span class="skill-badge highlight"><i class="devicon-javascript-plain colored"></i> JavaScript ES6+</span>
+                <span class="skill-badge"><i class="devicon-html5-plain colored"></i> HTML5</span>
+                <span class="skill-badge"><i class="devicon-css3-plain colored"></i> CSS3</span>
+                <span class="skill-badge"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
+                <span class="skill-badge"><i class="devicon-threejs-original"></i> Three.js</span>
+                <span class="skill-badge"><i class="fa-solid fa-mobile-screen"></i> Responsive UI</span>
+              </div>
+            </div>
+
+            <!-- 2. Backend & APIs -->
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <div class="category-icon"><i class="fa-solid fa-server"></i></div>
+                <h3>Backend &amp; APIs</h3>
+              </div>
+              <div class="skill-badges">
+                <span class="skill-badge highlight"><i class="devicon-python-plain colored"></i> Python 3.x</span>
+                <span class="skill-badge highlight"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+                <span class="skill-badge"><i class="devicon-django-plain colored"></i> Django</span>
+                <span class="skill-badge"><i class="devicon-flask-original"></i> Flask</span>
+                <span class="skill-badge"><i class="fa-solid fa-network-wired"></i> RESTful APIs</span>
+                <span class="skill-badge"><i class="fa-solid fa-key"></i> JWT Authentication</span>
+                <span class="skill-badge"><i class="fa-solid fa-layer-group"></i> CRUD Architecture</span>
+              </div>
+            </div>
+
+            <!-- 3. AI & Computer Vision -->
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <div class="category-icon"><i class="fa-solid fa-brain"></i></div>
+                <h3>AI &amp; Computer Vision</h3>
+              </div>
+              <div class="skill-badges">
+                <span class="skill-badge highlight"><i class="devicon-opencv-plain colored"></i> OpenCV</span>
+                <span class="skill-badge highlight"><i class="fa-solid fa-face-smile"></i> DeepFace</span>
+                <span class="skill-badge"><i class="fa-solid fa-camera"></i> Emotion Detection</span>
+                <span class="skill-badge"><i class="fa-solid fa-image"></i> Image Processing</span>
+                <span class="skill-badge"><i class="fa-solid fa-diagram-project"></i> Neural Networks</span>
+                <span class="skill-badge"><i class="fa-solid fa-gauge-high"></i> Model Inference</span>
+              </div>
+            </div>
+
+            <!-- 4. Databases -->
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <div class="category-icon"><i class="fa-solid fa-database"></i></div>
+                <h3>Databases &amp; Storage</h3>
+              </div>
+              <div class="skill-badges">
+                <span class="skill-badge highlight"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+                <span class="skill-badge highlight"><i class="devicon-sqlite-plain colored"></i> SQLite</span>
+                <span class="skill-badge"><i class="fa-solid fa-table"></i> SQL Querying</span>
+                <span class="skill-badge"><i class="fa-solid fa-sitemap"></i> Schema Design</span>
+                <span class="skill-badge"><i class="fa-solid fa-shield-halved"></i> ACID Transactions</span>
+                <span class="skill-badge"><i class="fa-solid fa-hard-drive"></i> LocalStorage</span>
+              </div>
+            </div>
+
+            <!-- 5. Languages -->
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <div class="category-icon"><i class="fa-solid fa-code"></i></div>
+                <h3>Programming Languages</h3>
+              </div>
+              <div class="skill-badges">
+                <span class="skill-badge highlight"><i class="devicon-python-plain colored"></i> Python</span>
+                <span class="skill-badge highlight"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                <span class="skill-badge"><i class="devicon-java-plain colored"></i> Java</span>
+                <span class="skill-badge"><i class="devicon-c-plain colored"></i> C</span>
+                <span class="skill-badge"><i class="devicon-cplusplus-plain colored"></i> C++</span>
+              </div>
+            </div>
+
+            <!-- 6. Developer Tools -->
+            <div class="skill-category-card">
+              <div class="skill-category-header">
+                <div class="category-icon"><i class="fa-solid fa-terminal"></i></div>
+                <h3>Tools &amp; Workflow</h3>
+              </div>
+              <div class="skill-badges">
+                <span class="skill-badge highlight"><i class="devicon-git-plain colored"></i> Git</span>
+                <span class="skill-badge highlight"><i class="devicon-github-original"></i> GitHub</span>
+                <span class="skill-badge"><i class="devicon-vscode-plain colored"></i> VS Code</span>
+                <span class="skill-badge"><i class="devicon-postman-plain colored"></i> Postman</span>
+                <span class="skill-badge"><i class="fa-solid fa-cloud-arrow-up"></i> Vercel</span>
+                <span class="skill-badge"><i class="fa-solid fa-gears"></i> GitHub Actions</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FEATURED PROJECTS ================= -->
+      <section class="section section-alt" id="projects">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag"><i class="fa-solid fa-laptop-code"></i> Portfolio Showcase</span>
+            <h2 class="section-title">Featured Engineering Projects</h2>
+            <p class="section-subtitle">Real-world applications built with robust architectures, clean design patterns, and full documentation.</p>
+          </div>
+
+          <!-- Filter Controls -->
+          <div class="projects-filter-bar">
+            <button class="filter-btn active" data-filter="all"><i class="fa-solid fa-grid-2"></i> All Projects</button>
+            <button class="filter-btn" data-filter="ai"><i class="fa-solid fa-brain"></i> AI &amp; Computer Vision</button>
+            <button class="filter-btn" data-filter="fullstack"><i class="fa-solid fa-server"></i> Full-Stack &amp; Backend</button>
+            <button class="filter-btn" data-filter="frontend"><i class="fa-solid fa-desktop"></i> Frontend &amp; 3D</button>
+          </div>
+
+          <div class="projects-grid">
+            
+            <!-- Project 1: Face Emotion Detection -->
+            <article class="project-card" data-category="ai">
+              <div class="project-media-wrapper">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Face Emotion Detection System" />
+                <div class="project-image-overlay">
+                  <span class="project-badge"><i class="fa-solid fa-brain"></i> AI / Computer Vision</span>
+                  <span class="project-code-tag">DeepFace + OpenCV</span>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-title-row">
+                  <i class="fa-solid fa-brain"></i>
+                  <h3>Face Emotion Detection System</h3>
+                </div>
+                <p class="project-description">
+                  Real-time facial expression classifier that captures live webcam feeds or uploaded photos, segments human facial features, and predicts emotional states with high accuracy.
+                </p>
+                <div class="project-features-list">
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Real-time frame processing via OpenCV video streaming</span>
+                  </div>
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>DeepFace multi-class emotion classification (Happy, Neutral, Surprise, etc.)</span>
+                  </div>
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Integrated Django backend handling media uploads and analytics</span>
+                  </div>
+                </div>
+                <div class="project-tech-tags">
+                  <span class="project-tag"><i class="devicon-python-plain colored"></i> Python</span>
+                  <span class="project-tag"><i class="devicon-django-plain colored"></i> Django</span>
+                  <span class="project-tag"><i class="devicon-opencv-plain colored"></i> OpenCV</span>
+                  <span class="project-tag"><i class="fa-solid fa-face-smile"></i> DeepFace</span>
+                  <span class="project-tag">AI/ML</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://github.com/manoj054/face-emotion-detector" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                    <i class="fa-brands fa-github"></i> View Repository
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2: 3D Earth Login -->
+            <article class="project-card" data-category="frontend">
+              <div class="project-media-wrapper">
+                <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=800&q=80" alt="3D Earth Animated Login Page" />
+                <div class="project-image-overlay">
+                  <span class="project-badge"><i class="fa-solid fa-cube"></i> Frontend &amp; 3D</span>
+                  <span class="project-code-tag">React Three Fiber</span>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-title-row">
+                  <i class="fa-solid fa-globe"></i>
+                  <h3>3D Earth Animated Login Portal</h3>
+                </div>
+                <p class="project-description">
+                  Cinematic authentication experience featuring an interactive rotating 3D Earth globe with realistic atmospheric glow, starry backdrop, and smooth micro-interactions.
+                </p>
+                <div class="project-features-list">
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>High-performance WebGL rendering via Three.js and React Three Fiber</span>
+                  </div>
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Smooth orbital controls, particle starfield, and lighting shaders</span>
+                  </div>
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Glassmorphic responsive login card with input validation</span>
+                  </div>
+                </div>
+                <div class="project-tech-tags">
+                  <span class="project-tag"><i class="devicon-react-original colored"></i> React.js</span>
+                  <span class="project-tag"><i class="devicon-threejs-original"></i> Three.js</span>
+                  <span class="project-tag">R3F</span>
+                  <span class="project-tag">Drei</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://github.com/manoj054/react" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                    <i class="fa-brands fa-github"></i> View Repository
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3: Secure Auth System -->
+            <article class="project-card" data-category="fullstack">
+              <div class="project-media-wrapper">
+                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&q=80" alt="FastAPI Authentication System" />
+                <div class="project-image-overlay">
+                  <span class="project-badge"><i class="fa-solid fa-shield-halved"></i> Backend &amp; Security</span>
+                  <span class="project-code-tag">FastAPI + JWT</span>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-title-row">
+                  <i class="fa-solid fa-shield-halved"></i>
+                  <h3>Secure Authentication &amp; RBAC System</h3>
+                </div>
+                <p class="project-description">
+                  Production-grade backend authentication engine implementing JSON Web Tokens (JWT), cryptographically hashed passwords, and granular role-based endpoint protection.
+                </p>
+                <div class="project-features-list">
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Secure JWT generation, refresh tokens, and bcrypt hashing</span>
+                  </div>
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Protected FastAPI dependency injection routes and OpenAPI docs</span>
+                  </div>
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Persistent user data and audit logs managed with MySQL</span>
+                  </div>
+                </div>
+                <div class="project-tech-tags">
+                  <span class="project-tag"><i class="devicon-python-plain colored"></i> Python</span>
+                  <span class="project-tag"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+                  <span class="project-tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
+                  <span class="project-tag"><i class="fa-solid fa-key"></i> JWT</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://github.com/manoj054/authentication" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                    <i class="fa-brands fa-github"></i> View Repository
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 4: Employee Management System -->
+            <article class="project-card" data-category="fullstack">
+              <div class="project-media-wrapper">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80" alt="Employee Management System" />
+                <div class="project-image-overlay">
+                  <span class="project-badge"><i class="fa-solid fa-users-gear"></i> Full-Stack App</span>
+                  <span class="project-code-tag">CRUD Engine</span>
+                </div>
+              </div>
+              <div class="project-body">
+                <div class="project-title-row">
+                  <i class="fa-solid fa-users-gear"></i>
+                  <h3>Employee Management System</h3>
+                </div>
+                <p class="project-description">
+                  Comprehensive employee directory dashboard providing full CRUD operations, live client-side search, departmental filtering, and LocalStorage data synchronization.
+                </p>
+                <div class="project-features-list">
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Full Create, Read, Update, Delete lifecycle with confirmation modals</span>
+                  </div>
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Real-time instant search filter across names, departments, and roles</span>
+                  </div>
+                  <div class="project-feature-item">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Responsive UI design crafted with vanilla HTML5, CSS3, and JavaScript</span>
+                  </div>
+                </div>
+                <div class="project-tech-tags">
+                  <span class="project-tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
+                  <span class="project-tag"><i class="devicon-html5-plain colored"></i> HTML5</span>
+                  <span class="project-tag"><i class="devicon-css3-plain colored"></i> CSS3</span>
+                  <span class="project-tag">LocalStorage</span>
+                </div>
+                <div class="project-actions">
+                  <a href="https://github.com/manoj054/javascript" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                    <i class="fa-brands fa-github"></i> View Repository
+                  </a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= EDUCATION & TIMELINE ================= -->
+      <section class="section" id="education">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag"><i class="fa-solid fa-graduation-cap"></i> Academic Pathway</span>
+            <h2 class="section-title">Education &amp; Milestones</h2>
+            <p class="section-subtitle">Strong foundational grounding in computer science principles, artificial intelligence, and software craftsmanship.</p>
+          </div>
+
+          <div class="timeline">
+            <!-- Experience / Current Industry Role -->
+            <div class="timeline-item">
+              <div class="timeline-marker" style="border-color:#10b981">
+                <div class="timeline-marker-inner" style="background:#10b981"></div>
+              </div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div class="timeline-institution">
+                    <div class="institution-icon" style="background:rgba(16,185,129,0.1);color:#10b981">
+                      <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <div class="institution-info">
+                      <h3>Full Stack Python Developer</h3>
+                      <p>VN Softverg Technology • Professional Experience</p>
+                    </div>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="timeline-duration"><i class="fa-regular fa-calendar"></i> June 2026 – Present</span>
+                    <span class="timeline-grade" style="color:#10b981;border-color:rgba(16,185,129,0.3);background:rgba(16,185,129,0.1)">
+                      <i class="fa-solid fa-circle-check"></i> Active Role
+                    </span>
+                  </div>
+                </div>
+                <div class="timeline-body">
+                  <p>
+                    <strong>AI-LMS (AI-Powered Learning Management System):</strong> Engineered a multi-tenant LMS with organization-specific data isolation and RBAC. Developed async REST APIs using FastAPI, SQLModel, PostgreSQL, and asyncpg. Built responsive frontend modules using React, TypeScript, MUI, and Redux Toolkit (RTK Query). Implemented JWT authentication, password hashing, and Alembic migrations.
+                  </p>
+                  <p style="margin-top:10px">
+                    <strong>HRM (Human Resource Management System):</strong> Built checkout and attendance tracking APIs with device, location, and IP validation. Automated work-hours calculations and integrated React.js frontend with FastAPI backend for real-time notification workflows.
+                  </p>
+                  <div class="timeline-coursework-tags" style="margin-top:14px">
+                    <span class="coursework-tag"><i class="devicon-fastapi-plain colored"></i> FastAPI</span>
+                    <span class="coursework-tag"><i class="devicon-react-original colored"></i> React.js</span>
+                    <span class="coursework-tag"><i class="devicon-typescript-plain colored"></i> TypeScript</span>
+                    <span class="coursework-tag"><i class="devicon-postgresql-plain colored"></i> PostgreSQL</span>
+                    <span class="coursework-tag"><i class="devicon-redux-original colored"></i> Redux Toolkit</span>
+                    <span class="coursework-tag"><i class="fa-solid fa-shield-halved"></i> JWT &amp; RBAC</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Education 1: B.Tech in CSE (AI) -->
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-marker-inner"></div>
+              </div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div class="timeline-institution">
+                    <div class="institution-icon">
+                      <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="institution-info">
+                      <h3>B.Tech in Computer Science and Engineering (Artificial Intelligence)</h3>
+                      <p>Annamacharya Institute of Technology and Science, Rajampet, Andhra Pradesh, India</p>
+                    </div>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="timeline-duration"><i class="fa-regular fa-calendar"></i> Aug 2023 – May 2026</span>
+                    <span class="timeline-grade"><i class="fa-solid fa-star"></i> CGPA: 7.76 / 10</span>
+                  </div>
+                </div>
+                <div class="timeline-body">
+                  <p>
+                    Specialized coursework in Artificial Intelligence, Machine Learning algorithms, Data Structures &amp; Algorithms, Relational Database Architectures, and Full-Stack Web Systems. Engineered AI-based computer vision and secure backend applications throughout the program.
+                  </p>
+                  <div class="timeline-coursework-tags">
+                    <span class="coursework-tag"><i class="fa-solid fa-brain"></i> Artificial Intelligence</span>
+                    <span class="coursework-tag"><i class="fa-solid fa-code"></i> Data Structures &amp; Algorithms</span>
+                    <span class="coursework-tag"><i class="devicon-python-plain colored"></i> Python</span>
+                    <span class="coursework-tag"><i class="devicon-react-original colored"></i> React.js</span>
+                    <span class="coursework-tag"><i class="devicon-postgresql-plain colored"></i> PostgreSQL / MySQL</span>
+                    <span class="coursework-tag"><i class="fa-solid fa-network-wired"></i> Computer Networks</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Education 2: Diploma in Computer Engineering -->
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-marker-inner"></div>
+              </div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div class="timeline-institution">
+                    <div class="institution-icon">
+                      <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <div class="institution-info">
+                      <h3>Diploma in Computer Engineering</h3>
+                      <p>Government Polytechnic, Proddatur, Andhra Pradesh, India</p>
+                    </div>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="timeline-duration"><i class="fa-regular fa-calendar"></i> Jun 2020 – Apr 2023</span>
+                    <span class="timeline-grade"><i class="fa-solid fa-award"></i> Percentage: 67%</span>
+                  </div>
+                </div>
+                <div class="timeline-body">
+                  <p>
+                    Rigorous state technical curriculum in computer engineering fundamentals, programming in C, C++, and Java, database design, operating systems architecture, computer networks, and hardware troubleshooting.
+                  </p>
+                  <div class="timeline-coursework-tags">
+                    <span class="coursework-tag"><i class="devicon-c-plain colored"></i> C Programming</span>
+                    <span class="coursework-tag"><i class="devicon-cplusplus-plain colored"></i> C++</span>
+                    <span class="coursework-tag"><i class="devicon-java-plain colored"></i> Java</span>
+                    <span class="coursework-tag"><i class="fa-solid fa-gears"></i> Operating Systems</span>
+                    <span class="coursework-tag"><i class="fa-solid fa-database"></i> Database Management</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Education 3: Board of Secondary Education (SSC) -->
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-marker-inner"></div>
+              </div>
+              <div class="timeline-card">
+                <div class="timeline-header">
+                  <div class="timeline-institution">
+                    <div class="institution-icon">
+                      <i class="fa-solid fa-school"></i>
+                    </div>
+                    <div class="institution-info">
+                      <h3>Board of Secondary Education (SSC)</h3>
+                      <p>Happy Kids High School, Madhavaram-1, Andhra Pradesh, India</p>
+                    </div>
+                  </div>
+                  <div class="timeline-meta">
+                    <span class="timeline-duration"><i class="fa-regular fa-calendar"></i> Year: 2020</span>
+                    <span class="timeline-grade" style="color:#f59e0b;border-color:rgba(245,158,11,0.3);background:rgba(245,158,11,0.1)">
+                      <i class="fa-solid fa-trophy"></i> CGPA: 10 / 10
+                    </span>
+                  </div>
+                </div>
+                <div class="timeline-body">
+                  <p>
+                    Achieved a perfect <strong>10/10 CGPA</strong>, establishing outstanding mathematical problem-solving skills, analytical discipline, and scholastic excellence.
+                  </p>
+                  <div class="timeline-coursework-tags">
+                    <span class="coursework-tag"><i class="fa-solid fa-square-root-variable"></i> Mathematics (10/10)</span>
+                    <span class="coursework-tag"><i class="fa-solid fa-atom"></i> General Science (10/10)</span>
+                    <span class="coursework-tag"><i class="fa-solid fa-book"></i> Scholastic Excellence</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- GitHub Activity Card (Krishna Format) -->
+          <div class="github-card">
+            <div class="github-info">
+              <span class="section-tag"><i class="fa-brands fa-github"></i> Open Source Profile</span>
+              <h3><i class="fa-brands fa-github"></i> github.com/manoj054</h3>
+              <p>
+                I actively maintain repositories showcasing modern full-stack web applications, FastAPI REST APIs, and computer vision utilities. Explore my code to review clean commit history, architecture patterns, and open-source experiments.
+              </p>
+              <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <i class="fa-brands fa-github"></i> Visit GitHub Profile
+              </a>
+            </div>
+
+            <div class="github-stats-grid">
+              <div class="github-stat-item">
+                <span class="stat-number counter" data-target="9">0</span>
+                <span class="stat-label"><i class="fa-solid fa-code-branch"></i> Repositories</span>
+              </div>
+              <div class="github-stat-item">
+                <span class="stat-number">React &amp; Python</span>
+                <span class="stat-label"><i class="fa-solid fa-layer-group"></i> Primary Stack</span>
+              </div>
+              <div class="github-stat-item">
+                <span class="stat-number counter" data-target="7.76" data-float="true">0</span>
+                <span class="stat-label"><i class="fa-solid fa-star"></i> Academic CGPA</span>
+              </div>
+              <div class="github-stat-item">
+                <span class="stat-number" style="color:var(--accent-emerald)"><i class="fa-solid fa-circle" style="font-size:10px"></i> Active</span>
+                <span class="stat-label"><i class="fa-solid fa-briefcase"></i> Open to Work</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ================= CONTACT SECTION ================= -->
+      <section class="section section-alt" id="contact">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag"><i class="fa-solid fa-envelope"></i> Get In Touch</span>
+            <h2 class="section-title">Let's Build Something Extraordinary Together</h2>
+            <p class="section-subtitle">Whether you have a full-time engineering opening, an internship opportunity, or a project collaboration — my inbox is always open.</p>
+          </div>
+
+          <div class="contact-grid">
+            <!-- Left Info Panel with Brand Icons -->
+            <div class="contact-info-panel">
+              <h3>Connect Directly</h3>
+              <p>Feel free to reach out across any of the platforms below. I typically respond within 24 hours.</p>
+
+              <div class="contact-channel-list">
+                <div class="contact-channel-item">
+                  <div class="channel-icon" style="background:rgba(234,67,53,0.1);color:#ea4335">
+                    <i class="fa-solid fa-envelope"></i>
+                  </div>
+                  <div class="channel-details">
+                    <h4>Direct Email</h4>
+                    <a href="mailto:manojsunku2026@gmail.com">manojsunku2026@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="contact-channel-item">
+                  <div class="channel-icon" style="background:rgba(10,102,194,0.1);color:#0a66c2">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                  </div>
+                  <div class="channel-details">
+                    <h4>LinkedIn Network</h4>
+                    <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer">manoj-kumar-sunku-a43a5033a</a>
+                  </div>
+                </div>
+
+                <div class="contact-channel-item">
+                  <div class="channel-icon" style="background:rgba(36,41,46,0.1);color:var(--text-heading)">
+                    <i class="fa-brands fa-github"></i>
+                  </div>
+                  <div class="channel-details">
+                    <h4>GitHub Repos</h4>
+                    <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer">@manoj054</a>
+                  </div>
+                </div>
+
+                <div class="contact-channel-item">
+                  <div class="channel-icon" style="background:rgba(37,211,102,0.1);color:#25d366">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </div>
+                  <div class="channel-details">
+                    <h4>WhatsApp</h4>
+                    <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer">+91 77803 91473</a>
+                  </div>
+                </div>
+
+                <div class="contact-channel-item">
+                  <div class="channel-icon" style="background:rgba(239,68,68,0.1);color:#ef4444">
+                    <i class="fa-solid fa-file-pdf"></i>
+                  </div>
+                  <div class="channel-details">
+                    <h4>Curriculum Vitae</h4>
+                    <a href="https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link" target="_blank" rel="noopener noreferrer">View Resume on Google Drive</a>
+                  </div>
+                </div>
+
+                <div class="contact-channel-item">
+                  <div class="channel-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                  </div>
+                  <div class="channel-details">
+                    <h4>Location</h4>
+                    <span>India (Open to Remote &amp; On-Site)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Contact Form -->
+            <div class="contact-form-card">
+              <h4>Send a Direct Message</h4>
+              <p class="form-subtitle">Fill in the form below to initiate a conversation.</p>
+
+              <form id="contact-form">
+                <div class="form-group">
+                  <label for="name"><i class="fa-solid fa-user"></i> Your Name</label>
+                  <input type="text" id="name" name="name" class="form-input" placeholder="e.g. John Doe" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="email"><i class="fa-solid fa-at"></i> Your Email Address</label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="e.g. john@example.com" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="subject"><i class="fa-solid fa-heading"></i> Subject / Opportunity</label>
+                  <input type="text" id="subject" name="subject" class="form-input" placeholder="e.g. Full-Stack Role / Project Inquiry" required />
+                </div>
+
+                <div class="form-group">
+                  <label for="message"><i class="fa-solid fa-comment-dots"></i> Message</label>
+                  <textarea id="message" name="message" class="form-textarea" placeholder="Describe the role or project you have in mind..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width:100%">
+                  Send Message <i class="fa-solid fa-paper-plane"></i>
+                </button>
+
+                <div class="form-feedback" id="form-feedback"></div>
+              </form>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="footer">
-      <div class="footer__inner">
-        <div class="footer__brand">
-          <h3>Sunku Manoj Kumar</h3>
-          <p>Full-Stack Developer &amp; AI Enthusiast</p>
+    <!-- ================= FOOTER ================= -->
+    <footer class="footer-simple">
+      <div class="container footer-simple-content">
+        <a href="#home" class="footer-simple-logo">
+          <span class="logo-bracket">&lt;</span>
+          <span>Sunku Manoj Kumar</span>
+          <span class="logo-bracket">/&gt;</span>
+        </a>
+
+        <div class="footer-simple-nav">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
         </div>
-        <div class="footer__links">
-          <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" id="footer-github"><i class="fa-brands fa-github"></i></a>
-          <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" id="footer-linkedin"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="mailto:manojsunku2026@gmail.com" id="footer-email"><i class="fa-solid fa-envelope"></i></a>
+
+        <!-- Comprehensive Footer Social Links -->
+        <div class="footer-simple-socials">
+          <a href="https://github.com/manoj054" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" title="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn"><i class="fa-brands fa-linkedin-in" style="color:#0a66c2"></i></a>
+          <a href="mailto:manojsunku2026@gmail.com" aria-label="Email Me" title="Email"><i class="fa-solid fa-envelope" style="color:#ea4335"></i></a>
+          <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i></a>
+          <a href="https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link" target="_blank" rel="noopener noreferrer" aria-label="Resume PDF" title="Google Drive Resume"><i class="fa-solid fa-file-pdf" style="color:#ef4444"></i></a>
         </div>
-        <p class="footer__copy">&copy; <span id="year"></span> Sunku Manoj Kumar. All rights reserved.</p>
+
+        <p class="footer-simple-copy">
+          &copy; <span id="current-year">2026</span> Sunku Manoj Kumar. Crafted with clean code, modern engineering practices &amp; AI innovation.
+        </p>
       </div>
     </footer>
 
+    <!-- Script -->
     <script src="script.js"></script>
   </body>
 </html>
