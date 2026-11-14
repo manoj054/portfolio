@@ -47,8 +47,8 @@
       <div class="recruiter-status-pill">
         <span class="pulse-dot"></span> Available for Hire
       </div>
-      <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" class="recruiter-action-btn" download="Manoj_Kumar_Sunku_Resume.pdf">
-        <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> Resume PDF
+      <a href="#resume-modal" class="recruiter-action-btn resume-trigger-btn" aria-label="Resume (Viewer &amp; Download)">
+        <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> Resume Options
       </a>
       <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="recruiter-action-btn" style="border-color:rgba(37,211,102,0.4)">
         <i class="fa-brands fa-whatsapp" style="color:#25d366"></i> WhatsApp
@@ -78,7 +78,7 @@
       <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="WhatsApp (+91 7780391473)" aria-label="WhatsApp Direct">
         <i class="fa-brands fa-whatsapp" style="color:#25d366"></i>
       </a>
-      <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" class="dock-item" data-tooltip="Resume PDF" aria-label="Resume PDF" download="Manoj_Kumar_Sunku_Resume.pdf">
+      <a href="#resume-modal" class="dock-item resume-trigger-btn" data-tooltip="Resume (Viewer / Download)" aria-label="Resume Options">
         <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i>
       </a>
     </aside>
@@ -122,8 +122,8 @@
           </button>
 
           <!-- Direct Resume Button -->
-          <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" download="Manoj_Kumar_Sunku_Resume.pdf">
-            Resume <i class="fa-solid fa-arrow-down-to-bracket"></i>
+          <a href="#resume-modal" class="btn btn-primary btn-sm resume-trigger-btn" aria-label="Resume (Viewer &amp; Download)">
+            Resume <i class="fa-solid fa-file-pdf"></i>
           </a>
 
           <!-- Mobile Hamburger Toggle -->
@@ -150,8 +150,8 @@
           <a href="mailto:manojsunku2026@gmail.com" class="nav-action-btn" aria-label="Email"><i class="fa-solid fa-envelope" style="color:#ea4335"></i></a>
           <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="nav-action-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i></a>
         </div>
-        <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm" style="margin-top:8px" download="Manoj_Kumar_Sunku_Resume.pdf">
-          View / Download Resume PDF <i class="fa-solid fa-file-pdf"></i>
+        <a href="#resume-modal" class="btn btn-primary btn-sm resume-trigger-btn" style="margin-top:8px" aria-label="Resume (Viewer &amp; Download)">
+          Resume (Viewer &amp; Download) <i class="fa-solid fa-file-pdf"></i>
         </a>
       </div>
     </header>
@@ -219,8 +219,8 @@
                 <button type="button" class="social-chip copy-trigger-btn" data-copy="manojsunku2026@gmail.com">
                   <i class="fa-solid fa-envelope" style="color:#ea4335"></i> <span>Copy Email</span>
                 </button>
-                <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" class="social-chip" download="Manoj_Kumar_Sunku_Resume.pdf">
-                  <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> <span>Resume PDF</span>
+                <a href="#resume-modal" class="social-chip resume-trigger-btn" aria-label="Resume (Viewer &amp; Download)">
+                  <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> <span>Resume</span>
                 </a>
               </div>
             </div>
@@ -481,8 +481,8 @@
                 <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" class="about-social-btn">
                   <i class="fa-brands fa-whatsapp" style="color:#25d366"></i> WhatsApp
                 </a>
-                <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" class="about-social-btn" download="Manoj_Kumar_Sunku_Resume.pdf">
-                  <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> View Resume PDF
+                <a href="#resume-modal" class="about-social-btn resume-trigger-btn" aria-label="Resume (Viewer &amp; Download)">
+                  <i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> Resume Options
                 </a>
               </div>
 
@@ -1947,7 +1947,7 @@
           <a href="https://linkedin.com/in/manoj-kumar-sunku-a43a5033a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" title="LinkedIn"><i class="fa-brands fa-linkedin-in" style="color:#0a66c2"></i></a>
           <a href="mailto:manojsunku2026@gmail.com" aria-label="Email Me" title="Email"><i class="fa-solid fa-envelope" style="color:#ea4335"></i></a>
           <a href="https://wa.me/917780391473" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i></a>
-          <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume PDF" title="Download Resume PDF" download="Manoj_Kumar_Sunku_Resume.pdf"><i class="fa-solid fa-file-pdf" style="color:#ef4444"></i></a>
+          <a href="#resume-modal" class="resume-trigger-btn" aria-label="Resume Options" title="Resume Options (Viewer / Download)"><i class="fa-solid fa-file-pdf" style="color:#ef4444"></i></a>
         </div>
 
         <p class="footer-simple-copy">
@@ -1981,6 +1981,92 @@
             </a>
             <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('project-modal').classList.remove('open')">
               Close Window
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= RESUME ACTION & VIEWER MODAL ================= -->
+    <div class="modal-overlay" id="resume-modal" role="dialog" aria-modal="true" aria-labelledby="resume-modal-title">
+      <div class="modal-dialog resume-modal-dialog">
+        <button class="modal-close-btn" id="resume-modal-close-btn" aria-label="Close Resume Modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="modal-content-body">
+          <div class="resume-modal-header">
+            <div class="resume-modal-title-row">
+              <div class="resume-modal-icon">
+                <i class="fa-solid fa-file-pdf"></i>
+              </div>
+              <div>
+                <h2 class="modal-title" id="resume-modal-title" style="margin-bottom:2px">Manoj Kumar Sunku — Resume</h2>
+                <p class="modal-desc" style="margin-bottom:0">Python Full Stack Developer • Hyderabad, India</p>
+              </div>
+            </div>
+
+            <!-- Two Core Options: Viewer & Download -->
+            <div class="resume-options-grid">
+              <!-- Option 1: Fullscreen Viewer -->
+              <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-option-card" id="resume-opt-viewer">
+                <div class="resume-option-icon viewer">
+                  <i class="fa-solid fa-eye"></i>
+                </div>
+                <div class="resume-option-details">
+                  <span class="resume-option-badge">Option 1</span>
+                  <h4>Open in PDF Viewer</h4>
+                  <p>View high-resolution resume in full browser viewer / new tab</p>
+                </div>
+                <i class="fa-solid fa-arrow-up-right-from-square resume-option-arrow"></i>
+              </a>
+
+              <!-- Option 2: Direct Download -->
+              <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" download="Manoj_Kumar_Sunku_Resume.pdf" class="resume-option-card highlight" id="resume-opt-download">
+                <div class="resume-option-icon download">
+                  <i class="fa-solid fa-download"></i>
+                </div>
+                <div class="resume-option-details">
+                  <span class="resume-option-badge success">Option 2</span>
+                  <h4>Download Resume PDF</h4>
+                  <p>Direct download file copy (132 KB, ATS-Friendly)</p>
+                </div>
+                <i class="fa-solid fa-arrow-down-to-bracket resume-option-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Live In-Modal Document Preview -->
+          <div class="resume-viewer-preview-wrap">
+            <div class="resume-viewer-preview-bar">
+              <div class="resume-preview-status">
+                <span class="pulse-dot"></span> <span>Live Document Preview</span>
+              </div>
+              <div class="resume-preview-actions">
+                <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" rel="noopener noreferrer" class="resume-preview-btn">
+                  <i class="fa-solid fa-expand"></i> Fullscreen Viewer
+                </a>
+                <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" download="Manoj_Kumar_Sunku_Resume.pdf" class="resume-preview-btn">
+                  <i class="fa-solid fa-download"></i> Download PDF
+                </a>
+              </div>
+            </div>
+            <div class="resume-frame-container">
+              <iframe
+                id="resume-pdf-frame"
+                src="assets/Manoj_Kumar_Sunku_Resume.pdf#view=FitH"
+                type="application/pdf"
+                title="Manoj Kumar Sunku Resume Viewer">
+                <p style="padding: 20px; color: #fff;">Your browser does not support embedded PDF viewing. Please use the <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" target="_blank" style="color: #60a5fa; text-decoration: underline;">Viewer</a> or <a href="assets/Manoj_Kumar_Sunku_Resume.pdf" download="Manoj_Kumar_Sunku_Resume.pdf" style="color: #34d399; text-decoration: underline;">Download</a> options above.</p>
+              </iframe>
+            </div>
+          </div>
+
+          <!-- Modal Footer -->
+          <div class="resume-modal-footer">
+            <span class="resume-note"><i class="fa-solid fa-circle-check" style="color:var(--accent-emerald)"></i> Verified candidate details &amp; active industry contact info</span>
+            <button type="button" class="btn btn-secondary btn-sm" id="resume-modal-dismiss-btn">
+              Close
             </button>
           </div>
         </div>
@@ -2028,8 +2114,8 @@
 
           <div class="palette-group-title">Quick Actions</div>
           <div class="palette-item" data-action="resume">
-            <div class="palette-item-left"><i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> View / Download Resume PDF</div>
-            <span class="kbd-shortcut">PDF</span>
+            <div class="palette-item-left"><i class="fa-solid fa-file-pdf" style="color:#ef4444"></i> Resume Options (Viewer &amp; Download)</div>
+            <span class="kbd-shortcut">Resume</span>
           </div>
           <div class="palette-item" data-action="copy-email">
             <div class="palette-item-left"><i class="fa-solid fa-copy" style="color:#10b981"></i> Copy Email Address (manojsunku2026@gmail.com)</div>

@@ -865,8 +865,8 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
         break;
 
       case 'resume':
-        window.open('assets/Manoj_Kumar_Sunku_Resume.pdf', '_blank');
-        appendCliLine('Opening Manoj Kumar Sunku Resume PDF...', '#fbbf24');
+        openResumeModal();
+        appendCliLine('Opening Resume modal (Viewer & Download options)...', '#fbbf24');
         break;
 
       case 'theme':
@@ -1106,6 +1106,7 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
     } else if (e.key === 'Escape') {
       if (paletteOverlay?.classList.contains('open')) closePalette();
       closeProjectModal();
+      closeResumeModal();
     } else if (e.key.toLowerCase() === 't' && !['input', 'textarea'].includes(document.activeElement.tagName.toLowerCase())) {
       toggleTheme();
     }
@@ -1144,7 +1145,7 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
         target.scrollIntoView({ behavior: 'smooth' });
       }
     } else if (action === 'resume') {
-      window.open('assets/Manoj_Kumar_Sunku_Resume.pdf', '_blank');
+      openResumeModal();
     } else if (action === 'copy-email') {
       navigator.clipboard.writeText('manojsunku2026@gmail.com').then(() => {
         showToast('Email copied to clipboard!', 'success', 'fa-solid fa-envelope');
@@ -1328,6 +1329,43 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
   if (projectModal) {
     projectModal.addEventListener('click', (e) => {
       if (e.target === projectModal) closeProjectModal();
+    });
+  }
+
+  // ============================================================
+  // 15B. RESUME ACTION & VIEWER MODAL
+  // ============================================================
+  const resumeModal = document.getElementById('resume-modal');
+  const resumeCloseBtn = document.getElementById('resume-modal-close-btn');
+  const resumeDismissBtn = document.getElementById('resume-modal-dismiss-btn');
+  const resumeTriggerBtns = document.querySelectorAll('.resume-trigger-btn');
+
+  function openResumeModal() {
+    if (resumeModal) {
+      resumeModal.classList.add('open');
+      playAudioTone('pop');
+    }
+  }
+
+  function closeResumeModal() {
+    if (resumeModal) {
+      resumeModal.classList.remove('open');
+      playAudioTone('click');
+    }
+  }
+
+  resumeTriggerBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openResumeModal();
+    });
+  });
+
+  if (resumeCloseBtn) resumeCloseBtn.addEventListener('click', closeResumeModal);
+  if (resumeDismissBtn) resumeDismissBtn.addEventListener('click', closeResumeModal);
+  if (resumeModal) {
+    resumeModal.addEventListener('click', (e) => {
+      if (e.target === resumeModal) closeResumeModal();
     });
   }
 
