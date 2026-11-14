@@ -839,12 +839,14 @@ Philosophy: Writing type-safe, asynchronous architectures with low latency & hig
 
       case 'projects':
         appendCliLine(`Featured Projects:
-  1. AI-LMS Enterprise Platform (FastAPI + PostgreSQL + React + RTK Query)
-  2. Face Emotion Detection System (DeepFace + OpenCV + 98.4% Accuracy)
-  3. Enterprise HRM & Biometric Attendance Engine (FastAPI + Geofencing)
-  4. 3D Earth Animated Login Portal (React Three Fiber + Shaders)
-  5. Zero-Trust JWT Authentication (FastAPI + Bcrypt + RBAC)
-  6. Employee Management Directory (Full-Stack CRUD + Fuzzy Search)`, '#38bdf8');
+  1. AI-Powered Resume & Job Description Matcher (FastAPI + TF-IDF + React 19)
+  2. Real-Time Face Emotion Detector (OpenCV + DeepFace + Flask)
+  3. CodeQuest: AI Programming Quiz Platform (FastAPI + React + PostgreSQL + AI)
+  4. AI-LMS Enterprise Platform (FastAPI + PostgreSQL + React + RTK Query)
+  5. Enterprise HRM & Biometric Attendance Engine (FastAPI + Geofencing)
+  6. Zero-Trust JWT Authentication (FastAPI + Bcrypt + RBAC)
+  7. 3D Earth Animated Login Portal (React Three Fiber + Shaders)
+  8. Employee Management Directory (Full-Stack CRUD + Fuzzy Search)`, '#38bdf8');
         break;
 
       case 'experience':
@@ -863,8 +865,8 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
         break;
 
       case 'resume':
-        window.open('https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link', '_blank');
-        appendCliLine('Opening Google Drive Resume...', '#fbbf24');
+        window.open('assets/Manoj_Kumar_Sunku_Resume.pdf', '_blank');
+        appendCliLine('Opening Manoj Kumar Sunku Resume PDF...', '#fbbf24');
         break;
 
       case 'theme':
@@ -1142,7 +1144,7 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
         target.scrollIntoView({ behavior: 'smooth' });
       }
     } else if (action === 'resume') {
-      window.open('https://drive.google.com/file/d/1uT-3MoMyRpp8D7eE4g4oU2PaUaHWEW7G/view?usp=drive_link', '_blank');
+      window.open('assets/Manoj_Kumar_Sunku_Resume.pdf', '_blank');
     } else if (action === 'copy-email') {
       navigator.clipboard.writeText('manojsunku2026@gmail.com').then(() => {
         showToast('Email copied to clipboard!', 'success', 'fa-solid fa-envelope');
@@ -1175,7 +1177,8 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
       const filter = btn.dataset.filter;
 
       projectCards.forEach(card => {
-        if (filter === 'all' || card.dataset.category === filter) {
+        const categories = (card.dataset.category || '').toLowerCase().split(/\s+/);
+        if (filter === 'all' || categories.includes(filter)) {
           card.style.display = 'flex';
         } else {
           card.style.display = 'none';
@@ -1190,6 +1193,42 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
   const quickViewBtns = document.querySelectorAll('.quick-view-btn');
 
   const projectDataMap = {
+    'resume-matcher': {
+      title: "AI-Powered Resume & Job Description Matcher",
+      badge: "Personal Project • AI / NLP System",
+      desc: "AI-driven resume parsing and job description matching web application calculating contextual match scores using TF-IDF vectorization and cosine similarity. Features real-time resume file extraction, skill gap analytics, and interactive score breakdowns.",
+      features: [
+        { title: "TF-IDF & Cosine Similarity Engine", desc: "Calculates mathematical cosine similarity between candidate resume tokens and job requirement vectors for unbiased ranking." },
+        { title: "Automated Resume Parsing", desc: "Extracts candidate contact details, skills, years of experience, and education from PDF & DOCX resumes." },
+        { title: "Skill Gap & Match Radar", desc: "Interactive visualization highlighting matching skills, missing critical keywords, and targeted recommendations." },
+        { title: "FastAPI + React 19 Architecture", desc: "Clean asynchronous backend with background processing, SQLite match history, and modern responsive frontend." }
+      ],
+      github: "https://github.com/manoj054/Resume-Matcher"
+    },
+    'emotion-ai': {
+      title: "Real-Time Face Emotion Detector",
+      badge: "Personal Project • Computer Vision",
+      desc: "Computer vision utility designed for live perception analysis. Captures video streams from webcams or uploaded photographs, maps 68 facial landmark coordinates, and performs multi-class emotion classification with high confidence.",
+      features: [
+        { title: "Real-Time Frame Processing", desc: "Continuous 60 FPS video stream capture using OpenCV matrix manipulation." },
+        { title: "DeepFace Neural Inference", desc: "Multi-class emotion classification achieving 98.4% precision across test benchmarks." },
+        { title: "Flask Backend Media Pipeline", desc: "Handles multipart image uploads, storage, and asynchronous analytical reporting." },
+        { title: "Visual Landmark Mesh", desc: "Real-time overlay of facial mesh wireframes and probability telemetry." }
+      ],
+      github: "https://github.com/manoj054/Face-Emotion-Detector"
+    },
+    'code-quest': {
+      title: "AI-Powered Programming Quiz Platform (CodeQuest)",
+      badge: "Personal Project • AI EdTech Platform",
+      desc: "Interactive coding assessment and quiz platform generating dynamic programming questions, hints, and explanations using AI models. Features secure Google OAuth, timed challenges, and real-time leaderboards.",
+      features: [
+        { title: "Dynamic AI Question Generation", desc: "Generates varied programming questions across difficulty tiers with context-aware hint engine and solutions." },
+        { title: "Google OAuth 2.0 & Role Dashboards", desc: "Secure authentication supporting Admin management and Student quiz taking with granular permissions." },
+        { title: "PostgreSQL & SQLModel Persistence", desc: "Scalable schema design handling user attempts, question banks, and instant score leaderboards." },
+        { title: "Automated Grading & Timed Challenges", desc: "Real-time timer countdowns, immediate score calculation, and performance analytics." }
+      ],
+      github: "https://github.com/manoj054/CodeQuest"
+    },
     'ai-lms': {
       title: "AI-Powered Learning Management System (AI-LMS)",
       badge: "Enterprise SaaS • VN Softverg",
@@ -1201,18 +1240,6 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
         { title: "Automated Database Migrations", desc: "Seamless schema versioning using Alembic with 100% data integrity." }
       ],
       github: "https://github.com/manoj054/authentication"
-    },
-    'emotion-ai': {
-      title: "Real-Time Face Emotion & Expression Recognition",
-      badge: "AI / Computer Vision",
-      desc: "Computer vision utility designed for live perception analysis. Captures video streams from webcams or uploaded photographs, maps 68 facial landmark coordinates, and performs multi-class emotion classification with high confidence.",
-      features: [
-        { title: "Real-Time Frame Processing", desc: "Continuous 60 FPS video stream capture using OpenCV matrix manipulation." },
-        { title: "DeepFace Neural Inference", desc: "Multi-class emotion classification achieving 98.4% precision across test benchmarks." },
-        { title: "Django Backend Media Pipeline", desc: "Handles multipart image uploads, storage, and asynchronous analytical reporting." },
-        { title: "Visual Landmark Mesh", desc: "Real-time overlay of facial mesh wireframes and probability telemetry." }
-      ],
-      github: "https://github.com/manoj054/face-emotion-detector"
     },
     'hrm-biometric': {
       title: "Enterprise HRM & Smart Biometric Attendance System",
