@@ -812,10 +812,10 @@ document.addEventListener('DOMContentLoaded', () => {
         appendCliLine(`Available Commands:
   • bio           - Display developer summary & background
   • skills        - List core technical competencies
-  • projects      - View all 6 flagship projects
+  • projects      - View all 8 flagship projects
   • experience    - View VN Softverg Technology details
   • contact       - Show email, phone & WhatsApp
-  • resume        - Open resume in a new tab
+  • resume        - Open Resume Viewer
   • theme         - Toggle Dark / Light mode
   • clear         - Clear terminal output`, '#38bdf8');
         break;
@@ -866,7 +866,7 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
 
       case 'resume':
         openResumeModal();
-        appendCliLine('Opening Resume modal (Viewer & Download options)...', '#fbbf24');
+        appendCliLine('Opening Resume Viewer...', '#fbbf24');
         break;
 
       case 'theme':
