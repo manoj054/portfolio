@@ -1369,6 +1369,14 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
     });
   }
 
+  const resumeDownloadIcon = document.getElementById('resume-small-download-icon');
+  if (resumeDownloadIcon) {
+    resumeDownloadIcon.addEventListener('click', () => {
+      playAudioTone('success');
+      showToast('Downloading Manoj Kumar Sunku Resume (PDF)...', 'success', 'fa-solid fa-file-arrow-down');
+    });
+  }
+
   // ============================================================
   // 16. SKILLS CATEGORY FILTER & ANIMATED PROFICIENCY METERS
   // ============================================================
