@@ -866,7 +866,7 @@ Impact: Engineered AI-LMS with multi-tenant schema isolation, sub-35ms async que
 
       case 'resume':
         openResumeModal();
-        appendCliLine('Opening Resume Viewer...', '#fbbf24');
+        appendCliLine('Opening Resume...', '#fbbf24');
         break;
 
       case 'theme':

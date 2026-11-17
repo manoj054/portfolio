@@ -960,9 +960,10 @@ button, input, textarea, select {
   font-size: 12px;
 }
 .stat-pill:hover {
-  border-color: var(--border-hover);
+  border-color: var(--primary);
   color: var(--text-heading);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.25);
 }
 .pulse-pill {
   border-color: rgba(16, 185, 129, 0.4);
@@ -2344,9 +2345,9 @@ button, input, textarea, select {
   position: relative;
 }
 .project-card:hover {
-  border-color: var(--border-hover);
-  box-shadow: var(--shadow-hover);
-  transform: translateY(-6px);
+  border-color: rgba(99, 102, 241, 0.6);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(59, 130, 246, 0.25);
+  transform: translateY(-8px);
 }
 
 .project-media-wrapper {
